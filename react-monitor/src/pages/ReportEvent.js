@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { getDataEventKMM } from '../helpers/getDataEventKMM';
-import { Col, Row, Typography, Card, Tag, Divider, Table} from 'antd';
+import { Col, Row, Typography, Card, Tag, Divider, Table, Spin, Alert, Space} from 'antd';
+import { ExportCSV } from '../helpers/ExportCSV';
+import {toogleById} from '../util/util'
+
 const { Title, Text } = Typography;
-
-
-
 
 const columns = [
     {
@@ -24,18 +24,23 @@ const columns = [
 
 export const ReportEvent = ({idEvent, nameEvent}) => {
     const [ agencias, setAgencias ] = useState([]);
+    const [ totalRegister, setTotalRegister ] = useState([]);
     const [ totalFirst, seTotalFirst ] = useState([]);
     const [ dealerFirst, setDealerFirst ] = useState([]);
 
-
     useEffect(() => {
         setAgencias([]);
+        toogleById("idSpinner");
+        toogleById("idExportCsv");           
         if(idEvent){
             getDataEventKMM(idEvent).then((data) => {
                 setAgencias(data);
                 if(data){
                     seTotalFirst(data[0].total);
                     setDealerFirst(data[0].dealer);
+                    setTotalRegister(data.map( d => d.total).reduce( (a, b) => a + b, 0));
+                    toogleById("idSpinner");
+                    toogleById("idExportCsv");
                 }
             });
         }     
@@ -51,9 +56,16 @@ export const ReportEvent = ({idEvent, nameEvent}) => {
                 <Row style={{ marginTop: 20 }}>
                     <Col span={ 24 } offset={ 0 } align="center">
                         <Text type="success" style={{ fontSize: 36 }}>
-                        "{nameEvent}" ({agencias.map( d => d.total).reduce( (a, b) => a + b, 0)} Registers) 
+                        "{nameEvent}" ( {totalRegister} Registers) 
                         </Text>
-                        <Divider> Detail </Divider>
+                        <br/>
+                        <div id="idExportCsv">
+                            <ExportCSV csvData={agencias} fileName={"R"} total={totalRegister} idEvent={idEvent}/>
+                        </div>
+                        <Space size="middle" align="center" id="idSpinner" style={{ display: "none" }}>
+                            <Spin size="large" tip="Loading..." />
+                        </Space>
+                        <Divider> Detail </Divider>                        
                     </Col>
                 </Row>
                 <Row>

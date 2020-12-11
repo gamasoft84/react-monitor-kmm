@@ -5,6 +5,7 @@ import {
   UserOutlined,
   FileTextFilled,
   CarFilled,
+  CloudDownloadOutlined
 } from '@ant-design/icons';
 
 import {
@@ -52,7 +53,7 @@ export const RouterPageKMM = () => {
                           Test Drive
                         </Link>
                       </Menu.Item>
-                      <Menu.Item key="4" icon={<CarFilled />}>
+                      <Menu.Item key="4" icon={<CloudDownloadOutlined />}>
                         <Link to="/events">
                           Events
                         </Link>
