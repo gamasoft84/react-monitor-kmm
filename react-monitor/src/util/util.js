@@ -51,6 +51,7 @@ export const objectToArray = (dataObject) => {
 ]
 */
 export const objectToArrayValues = (dataObject) => {
+  dataObject.map(e => delete e['key']);
   return Object.keys(dataObject).map(idx => Object.values(dataObject[idx]));
 }
 
