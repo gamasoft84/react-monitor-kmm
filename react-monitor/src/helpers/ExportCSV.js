@@ -5,7 +5,7 @@ import { CloudDownloadOutlined} from '@ant-design/icons';
 import moment from 'moment';
 import Excel from 'exceljs';
 import {objectToArrayValues} from '../util/util'
-import { getDataTestDriveEventsKMM } from '../helpers/getDataTestDriveEventsKMM';
+import { getDataTestDriveEventsKMM } from '../helpers/getDataKMM';
 
 
 export const ExportCSV = ({csvData, fileName,total, idEvent}) => {

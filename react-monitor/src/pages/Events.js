@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Col, Row, Typography, Divider, Select } from 'antd';
 import { ReportEvent } from './ReportEvent';
-import { getInfoEventsKMM } from '../helpers/getInfoEventsKMM';
+import { getInfoEventsKMM } from '../helpers/getDataKMM';
 const { Option } = Select;
 
 const { Title } = Typography;
