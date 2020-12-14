@@ -11,7 +11,6 @@ export const getInfoEventsKMM = async() => {
         data.sort((a, b) => b.nameEvent > a.nameEvent);
     }
     return data;
-
 }
 
 export const getDataEventKMM = async(idEvent) => {
@@ -40,5 +39,12 @@ export const getDataKMM = async(type) => {
     if(data && data.length > 1){
         data.sort((a, b) => b.total - a.total);
     }
+    return data;
+}
+
+
+export const getInfoPriceKMM = async() => {
+    const resp = await fetch(URL_BACK + 'infoPrice');
+    const data = await resp.json();
     return data;
 }

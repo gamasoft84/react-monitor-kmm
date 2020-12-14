@@ -5,7 +5,8 @@ import {
   UserOutlined,
   FileTextFilled,
   CarFilled,
-  CloudDownloadOutlined
+  CloudDownloadOutlined,
+  DollarCircleOutlined 
 } from '@ant-design/icons';
 
 import {
@@ -21,6 +22,7 @@ import { Leads } from './Leads';
 import { Quotations } from './Quotations';
 import { TestsDrives } from './TestsDrives';
 import { Events } from './Events';
+import { ReportPrice } from './ReportPrice';
 
 
 const { Sider, Content } = Layout;
@@ -58,6 +60,11 @@ export const RouterPageKMM = () => {
                           Events
                         </Link>
                       </Menu.Item>
+                      <Menu.Item key="5" icon={<DollarCircleOutlined  />}>
+                        <Link to="/prices">
+                          Prices
+                        </Link>
+                      </Menu.Item>
                   </Menu>
               </Sider>
               <Layout className="site-layout">
@@ -75,6 +82,7 @@ export const RouterPageKMM = () => {
                    <Route path="/quotations" component={ Quotations } />
                    <Route path="/testsDrives" component={ TestsDrives } />
                    <Route path="/events" component={ Events } />
+                   <Route path="/prices" component={ ReportPrice } />
                    <Redirect to="/leads" />
                   </Switch>
                  
