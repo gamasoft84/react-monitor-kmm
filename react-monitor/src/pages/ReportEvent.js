@@ -25,11 +25,13 @@ const columns = [
 export const ReportEvent = ({idEvent, nameEvent}) => {
     const [ agencias, setAgencias ] = useState([]);
     const [ totalRegister, setTotalRegister ] = useState([]);
-    const [ totalFirst, seTotalFirst ] = useState([]);
-    const [ dealerFirst, setDealerFirst ] = useState([]);
+    const [ totalFirst, seTotalFirst ] = useState();
+    const [ dealerFirst, setDealerFirst ] = useState();
 
     useEffect(() => {
         setAgencias([]);
+        seTotalFirst();
+        setDealerFirst();
         toogleById("idSpinner");
         toogleById("idExportCsv");           
         if(idEvent){
