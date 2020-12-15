@@ -48,3 +48,9 @@ export const getInfoPriceKMM = async() => {
     const data = await resp.json();
     return data;
 }
+
+export const getInfoPdvsKMM = async() => {
+    const resp = await fetch(URL_BACK + 'infoPdvs');
+    const data = await resp.json();
+    return data;
+}

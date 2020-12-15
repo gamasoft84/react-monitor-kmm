@@ -19,6 +19,7 @@ import { Quotations } from './Quotations';
 import { TestsDrives } from './TestsDrives';
 import { Events } from './Events';
 import { ReportPrice } from './ReportPrice';
+import { ReportPdvs } from './ReportPdvs';
 
 const { SubMenu } = Menu;
 const { Header, Footer, Sider, Content } = Layout;
@@ -64,6 +65,9 @@ export const RouterPageKMM = () => {
                             Prices
                           </Link>
                         </Menu.Item>
+                        <Menu.Item key="6" icon={<DollarCircleOutlined  />}>
+                          <Link to="/pdvs">Pdvs</Link>
+                        </Menu.Item>
                         </Menu>
                       </Sider>
                       <Content style={{ padding: '0 24px', minHeight: 680 }}>
@@ -73,6 +77,7 @@ export const RouterPageKMM = () => {
                           <Route path="/testsDrives" component={ TestsDrives } />
                           <Route path="/events" component={ Events } />
                           <Route path="/prices" component={ ReportPrice } />
+                          <Route path="/pdvs" component={ ReportPdvs} />
                           <Redirect to="/leads" />
                         </Switch>
                       </Content>
