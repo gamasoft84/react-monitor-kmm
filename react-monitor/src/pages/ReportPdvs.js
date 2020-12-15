@@ -49,7 +49,7 @@ const columns = [
         title: 'Is Front',
         dataIndex: 'usaPrecioFrontera',
         key: 'usaPrecioFrontera',
-        sorter: (a, b) => a.usaPrecioFrontera.toLowerCase() < b.usaPrecioFrontera.toLowerCase(),
+        sorter: (a, b) => a.usaPrecioFrontera - b.usaPrecioFrontera,
         sortOrder: sortedInfo.columnKey === 'usaPrecioFrontera' && sortedInfo.order,
         filters: [
             { text: 'YES', value: '1' },
@@ -67,7 +67,7 @@ const columns = [
       title: 'Active',
       dataIndex: 'dealerActive',
       key: 'dealerActive',
-      sorter: (a, b) => a.dealerActive.toLowerCase() < b.dealerActive.toLowerCase(),
+      sorter: (a, b) => a.dealerActive - b.dealerActive,
       sortOrder: sortedInfo.columnKey === 'dealerActive' && sortedInfo.order,
       filters: [
           { text: 'YES', value: '1' },

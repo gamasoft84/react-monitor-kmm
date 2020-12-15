@@ -3,7 +3,8 @@ import { Layout, Menu, Breadcrumb } from 'antd';
 import {
   BarChartOutlined,
   CloudDownloadOutlined,
-  DollarCircleOutlined 
+  DollarCircleOutlined,
+  HomeOutlined
 } from '@ant-design/icons';
 
 import {
@@ -65,7 +66,7 @@ export const RouterPageKMM = () => {
                             Prices
                           </Link>
                         </Menu.Item>
-                        <Menu.Item key="6" icon={<DollarCircleOutlined  />}>
+                        <Menu.Item key="6" icon={<HomeOutlined  />}>
                           <Link to="/pdvs">Pdvs</Link>
                         </Menu.Item>
                         </Menu>
