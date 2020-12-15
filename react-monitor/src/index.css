@@ -1,14 +1,16 @@
 @import '~antd/dist/antd.css';
 
-#components-layout-demo-top-side-2 .logo {
+
+.logo {
   float: left;
   width: 120px;
-  height: 31px;
-  margin: 16px 24px 16px 0;
-  background: rgba(255, 255, 255, 0.3);
+  height: 51px;
+  margin: 6px 0px 0px 0px;
+  background-image: url("https://www.kia.com/content/dam/kwcms/mx/es/images/common/lg_kia.png");
+  background-repeat: no-repeat;
 }
 
-.ant-row-rtl #components-layout-demo-top-side-2 .logo {
+.ant-row-rtl .logo {
   float: right;
   margin: 16px 0 16px 24px;
 }
