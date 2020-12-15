@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getDataEventKMM } from '../helpers/getDataKMM';
-import { Col, Row, Typography, Card, Tag, Divider, Table, Spin, Alert, Space} from 'antd';
+import { Col, Row, Typography, Card, Tag, Divider, Table, Spin, Space} from 'antd';
 import { ExportCSV } from '../helpers/ExportCSV';
 import {toogleById} from '../util/util'
 

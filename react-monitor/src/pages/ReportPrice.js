@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getInfoPriceKMM } from '../helpers/getDataKMM';
 import { withCommas } from '../util/util';
-import { Col, Row, Typography, Card, Tag, Divider, Table, Spin, Alert, Space, Button} from 'antd';
+import { Col, Row, Typography, Divider, Table, Space, Button} from 'antd';
 
 const { Title, Text } = Typography;
   
@@ -151,7 +151,7 @@ const columns = [
                 }
                 
             });
-    }, [])    
+    }, [filteredInfo,sortedInfo])    
     
 
     return (        
