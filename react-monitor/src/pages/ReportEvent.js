@@ -82,7 +82,7 @@ export const ReportEvent = ({idEvent, nameEvent}) => {
                         </Card>
                     </Col>
                     <Col span={ 12 } offset={ 0 } align="center">
-                            <Table rowKey={prices => prices.localSalesCode} columns={columns} dataSource={agencias} />  
+                            <Table rowKey={agencias => agencias.dealer} columns={columns} dataSource={agencias} />  
                     </Col>
                 </Row>
                 </>

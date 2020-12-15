@@ -170,7 +170,7 @@ const columns = [
                                 <Button onClick={clearFilters}>Clear filters</Button>
                                 <Button onClick={clearAll}>Clear filters and sorters</Button>
                             </Space>
-                            <Table columns={columns} dataSource={prices} onChange={handleChange} />  
+                            <Table rowKey={prices => prices.localSalesCode} columns={columns} dataSource={prices} onChange={handleChange} />  
                     </Col>
                 </Row>
                 </>
