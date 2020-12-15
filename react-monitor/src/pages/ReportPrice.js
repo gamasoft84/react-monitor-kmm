@@ -11,6 +11,7 @@ export const ReportPrice = () => {
     const [ prices, setPrices ] = useState([]);
     const [ filteredInfo, setFilteredInfo ] = useState([]);
     const [ sortedInfo, setSortedInfo ] = useState([]);
+    const [ status, setStatus ] = useState();
 
 
 
@@ -142,9 +143,13 @@ const columns = [
                 setSortedInfo(sortedInfo || {});
                 setFilteredInfo(filteredInfo || {});
                 data = data[0];
-               let dataContent = JSON.parse(data.RQ_XML);
-               console.log(dataContent.transactionId);
-               setPrices(dataContent.contents);
+                let dataContent = null; 
+                if(data){
+                    dataContent = JSON.parse(data.RQ_XML);
+                    setPrices(dataContent.contents.reverse());
+                    setStatus(data.TRSC_RSLT_CD === "GCORESU" ? "Success": "Fail");
+                }
+                
             });
     }, [])    
     
@@ -159,6 +164,9 @@ const columns = [
                  <Row>
                     <Col  align="center">
                             <Space style={{ marginBottom: 16 }}>
+                            {prices && prices.length> 0 && (
+                                <Button type={status === 'Success' ? 'primary disabled' : 'danger'}>{status}</Button>                                
+                            )}
                                 <Button onClick={clearFilters}>Clear filters</Button>
                                 <Button onClick={clearAll}>Clear filters and sorters</Button>
                             </Space>
