@@ -16,18 +16,17 @@ export const ReportPrice = () => {
 
 
 const handleChange = (pagination, filters, sorter) => {
-    console.log('Various parameters', pagination, filters, sorter);
     setSortedInfo(sorter);
     setFilteredInfo(filters);
   };
 
   const clearFilters = () => {
-    setFilteredInfo();
+    setFilteredInfo([]);
   };
 
  const clearAll = () => {
-    setSortedInfo();
-    setFilteredInfo();
+    setSortedInfo([]);
+    setFilteredInfo([]);
   };
 
 
@@ -49,18 +48,41 @@ const columns = [
       sortOrder: sortedInfo.columnKey === 'localSalesCode' && sortedInfo.order,
     },
     {
+        title: 'Year',
+        key: 'modelYear',
+        dataIndex: 'modelYear',
+        sorter: (a, b) => a.modelYear - b.modelYear,
+        sortOrder: sortedInfo.columnKey === 'modelYear' && sortedInfo.order,
+        filters: [
+          { text: '2021', value: '2021' },
+          { text: '2020', value: '2020' },
+          { text: '2019', value: '2019' },
+        ],
+        filteredValue: filteredInfo.modelYear || null,
+        onFilter: (value, record) => value.includes(record.modelYear),  
+        ellipsis: true,    
+    },
+    {
         title: 'Model',
         dataIndex: 'model',
         key: 'model',
         sorter: (a, b) => a.model.toLowerCase() < b.model.toLowerCase(),
         sortOrder: sortedInfo.columnKey === 'model' && sortedInfo.order,
         filters: [
+            { text: 'FORTE HATCHBACK', value: 'FORTE HATCHBACK' },
+            { text: 'FORTE SEDAN', value: 'FORTE SEDAN' },
+            { text: 'KIA OPTIMA', value: 'KIA OPTIMA' },
+            { text: 'NEW SPORTAGE', value: 'NEW SPORTAGE' },
+            { text: 'NIRO', value: 'NIRO' },
+            { text: 'RIO HATCHBACK', value: 'RIO HATCHBACK' },
+            { text: 'RIO SEDAN', value: 'RIO SEDAN' },
+            { text: 'SEDONA', value: 'SEDONA' },
+            { text: 'SELTOS', value: 'SELTOS' },
+            { text: 'SORENTO', value: 'SORENTO' },
+            { text: 'SOUL', value: 'SOUL' },
             { text: 'STINGER', value: 'STINGER' },
-            { text: 'FORTE HATCHBACK	', value: 'FORTE HATCHBACK' },
-            { text: 'FORTE SEDAN	', value: 'FORTE SEDAN' },
-            { text: 'NIRO	', value: 'NIRO' },
           ],
-          filteredValue: filteredInfo.model || null,
+          filteredValue: filteredInfo && filteredInfo.model ? filteredInfo.model: null,
           onFilter: (value, record) => value.includes(record.model),
           ellipsis: true,
     },
@@ -95,22 +117,7 @@ const columns = [
             $ {withCommas(record.precioListaFrN)}
             </Text>
           ),        
-    },
-    {
-      title: 'Year',
-      key: 'modelYear',
-      dataIndex: 'modelYear',
-      sorter: (a, b) => a.modelYear - b.modelYear,
-      sortOrder: sortedInfo.columnKey === 'modelYear' && sortedInfo.order,
-      filters: [
-        { text: '2021', value: '2021' },
-        { text: '2020', value: '2020' },
-        { text: '2019', value: '2019' },
-      ],
-      filteredValue: filteredInfo.modelYear || null,
-      onFilter: (value, record) => value.includes(record.modelYear),  
-      ellipsis: true,    
-    },
+    },    
     {
         title: 'Insurance Std',
         key: 'gapInsurancePriceStd',

@@ -21,12 +21,12 @@ const handleChange = (pagination, filters, sorter) => {
   };
 
   const clearFilters = () => {
-    setFilteredInfo();
+    setFilteredInfo([]);
   };
 
  const clearAll = () => {
-    setSortedInfo();
-    setFilteredInfo();
+    setSortedInfo([]);
+    setFilteredInfo([]);
   };
 
  

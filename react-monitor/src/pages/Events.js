@@ -27,7 +27,7 @@ export const Events = ({title}) => {
 
     return (
         <div>
-            <Title level={ 2 }>Events:</Title>
+            <Title level={ 2 }>Events</Title>
             <Divider />
             <Row>
                 <Col span={ 8 }>

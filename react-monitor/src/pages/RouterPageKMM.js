@@ -67,7 +67,7 @@ export const RouterPageKMM = () => {
                           </Link>
                         </Menu.Item>
                         <Menu.Item key="6" icon={<HomeOutlined  />}>
-                          <Link to="/pdvs">Pdvs</Link>
+                          <Link to="/pdvs">PDVS</Link>
                         </Menu.Item>
                         </Menu>
                       </Sider>

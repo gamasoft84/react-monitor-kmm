@@ -1,13 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Chart } from 'chart.js';
 import { getDataKMM } from '../helpers/getDataKMM';
+import { Empty } from 'antd';
 
 
 export const BandChart = ({title}) => {
 
-   
-    useEffect(() => {
+   const [data, setData] = useState([]);
 
+    useEffect(() => {
         const crearGrafica = (info, total) => {
             const ctx = document.getElementById('myChart');
             new Chart(ctx, {
@@ -67,6 +68,7 @@ export const BandChart = ({title}) => {
         }
 
         getDataKMM(title).then((data) => {
+                setData(data);
                 if(data && data.length > 0){
                     var total =  data.map(d => d.total).reduce( (a, b) => a + b );
                     crearGrafica( data, total);
@@ -75,6 +77,16 @@ export const BandChart = ({title}) => {
     }, [title])
 
     return (
-        <canvas id="myChart"></canvas>
+        <>
+            <canvas id="myChart"></canvas>
+            { 
+                data.length === 0 && (
+                    <div>
+                        <Empty/>
+                    </div>
+                )
+            }            
+        </>
+        
     )
 }
