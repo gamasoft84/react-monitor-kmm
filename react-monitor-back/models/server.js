@@ -45,23 +45,22 @@ class Server {
 
         });
 
+        const config = {
+            user:  process.env.SQL_USER,
+            password: process.env.SQL_PASSWORD,
+            server: process.env.SQL_SERVER, 
+            database: process.env.SQL_DATABASE
+        };
 
         this.app.get('/dataEvents/:idEvent', function (req, res) {  
             const idEvent = req.params.idEvent;
-            console.log('idEvent', idEvent);
-            var config = {
-                user:  process.env.SQL_USER,
-                password: process.env.SQL_PASSWORD,
-                server: process.env.SQL_SERVER, 
-                database: process.env.SQL_DATABASE
-            };
+
             // connect to your database
             sql.connect(config, function (err) {            
                 if (err) console.log(err);
 
                 // create Request object
-                var request = new sql.Request();
-                   
+                var request = new sql.Request();                   
                 // query to the database and get the records
                 request.query(
                   `select SUBSTRING(AGE.DLR_NM,CHARINDEX('KIA',AGE.DLR_NM),LEN(AGE.DLR_NM)) AS 'dealer',count(*) AS 'total'
@@ -77,8 +76,7 @@ class Server {
                     if (err) console.log(err)
                     console.log(recordset.rowsAffected);        
                     // send records as a response
-                    res.send(recordset.recordset);
-                    
+                    res.send(recordset.recordset);                    
                 });
             });
         });
@@ -86,20 +84,12 @@ class Server {
 
         this.app.get('/dataTestsDriveEvents/:idEvent', function (req, res) {  
             const idEvent = req.params.idEvent;
-            console.log('idEvent', idEvent);
-            var config = {
-                user:  process.env.SQL_USER,
-                password: process.env.SQL_PASSWORD,
-                server: process.env.SQL_SERVER, 
-                database: process.env.SQL_DATABASE
-            };
             // connect to your database
             sql.connect(config, function (err) {            
                 if (err) console.log(err);
 
                 // create Request object
-                var request = new sql.Request();
-                   
+                var request = new sql.Request();                   
                 // query to the database and get the records
                 request.query(
                   `
@@ -118,37 +108,26 @@ class Server {
                             and CM.IFW_PATH_CD = ${idEvent}  
                     )
                     GROUP BY  D.DLR_NM                  
-                    ORDER BY 'total' DESC`, function (err, recordset) {
-                    
+                    ORDER BY 'total' DESC`, function (err, recordset) {                    
                     if (err) console.log(err)
                     console.log(recordset.rowsAffected);        
                     // send records as a response
-                    res.send(recordset.recordset);
-                    
+                    res.send(recordset.recordset);                    
                 });
             });
         });
 
-        this.app.get('/infoEvents', function (req, res) {   
-            var config = {
-                user:  process.env.SQL_USER,
-                password: process.env.SQL_PASSWORD,
-                server: process.env.SQL_SERVER, 
-                database: process.env.SQL_DATABASE
-            };
+        this.app.get('/infoEvents', function (req, res) {              
             // connect to your database
             sql.connect(config, function (err) {            
                 if (err) console.log(err);
-
                 // create Request object
-                var request = new sql.Request();
-                   
+                var request = new sql.Request();                   
                 // query to the database and get the records
                 request.query(
                   `SELECT TOP 10 SRC_ID as idEvent, SRC_NM as nameEvent, STRT_DT as startDate, END_DT as endDate 
                   FROM GLB_ETC_AD_SRC_C WHERE SRC_ID > 8 AND SRC_ID NOT IN (11,12,16)order by SRC_ID desc
-                  `, function (err, recordset) {
-                    
+                  `, function (err, recordset) {                    
                     if (err) console.log(err)
                     console.log(recordset.rowsAffected);        
                     // send records as a response
@@ -159,28 +138,19 @@ class Server {
 
 
 
-        this.app.get('/infoPrice', function (req, res) {   
-            var config = {
-                user:  process.env.SQL_USER,
-                password: process.env.SQL_PASSWORD,
-                server: process.env.SQL_SERVER, 
-                database: process.env.SQL_DATABASE
-            };
+        this.app.get('/infoPrice', function (req, res) {  
             // connect to your database
             sql.connect(config, function (err) {            
                 if (err) console.log(err);
-
                 // create Request object
-                var request = new sql.Request();
-                   
+                var request = new sql.Request();                   
                 // query to the database and get the records
                 request.query(
                   `
                   SELECT *
                   FROM GLB_INF_LOG_HIS_G_I A 
                   WHERE A.API_SVC_ID = 15 AND A.CRE_DTM >= DATEADD(day,-1,getDate())
-                  `, function (err, recordset) {
-                    
+                  `, function (err, recordset) {                    
                     if (err) console.log(err)
                     console.log(recordset.rowsAffected);        
                     // send records as a response
@@ -190,28 +160,20 @@ class Server {
         });
 
 
-        this.app.get('/infoPdvs', function (req, res) {   
-            var config = {
-                user:  process.env.SQL_USER,
-                password: process.env.SQL_PASSWORD,
-                server: process.env.SQL_SERVER, 
-                database: process.env.SQL_DATABASE
-            };
+        this.app.get('/infoPdvs', function (req, res) { 
             // connect to your database
             sql.connect(config, function (err) {            
                 if (err) console.log(err);
 
                 // create Request object
-                var request = new sql.Request();
-                   
+                var request = new sql.Request();                   
                 // query to the database and get the records
                 request.query(
                   `
                   SELECT *
                   FROM GLB_INF_LOG_HIS_G_I A 
                   WHERE A.API_SVC_ID = 17 AND A.CRE_DTM >= DATEADD(day,-1,getDate())
-                  `, function (err, recordset) {
-                    
+                  `, function (err, recordset) {                    
                     if (err) console.log(err)
                     console.log(recordset.rowsAffected);        
                     // send records as a response
@@ -219,9 +181,6 @@ class Server {
                 });
             });
         });
-
-
-
     }
 
 
