@@ -11,7 +11,6 @@ const config = {
 var sql = require("mssql");
 
 const findPdvs = (req, res  = response) => { 
-    console.log('config config',config);
     // connect to your database
     sql.connect(config, function (err) {            
         if (err) console.log(err);
