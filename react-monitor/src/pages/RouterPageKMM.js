@@ -4,7 +4,8 @@ import {
   BarChartOutlined,
   CloudDownloadOutlined,
   DollarCircleOutlined,
-  HomeOutlined
+  HomeOutlined,
+  UserOutlined 
 } from '@ant-design/icons';
 
 import {
@@ -21,6 +22,7 @@ import { TestsDrives } from './TestsDrives';
 import { Events } from './Events';
 import { ReportPrice } from './ReportPrice';
 import { ReportPdvs } from './ReportPdvs';
+import { LeadsCrm } from './LeadsCrm';
 
 const { SubMenu } = Menu;
 const { Header, Footer, Sider, Content } = Layout;
@@ -69,6 +71,9 @@ export const RouterPageKMM = () => {
                         <Menu.Item key="6" icon={<HomeOutlined  />}>
                           <Link to="/pdvs">PDVS</Link>
                         </Menu.Item>
+                        <Menu.Item key="7" icon={<UserOutlined  />}>
+                          <Link to="/leadsCrm">Leads CRM</Link>
+                        </Menu.Item>
                         </Menu>
                       </Sider>
                       <Content style={{ padding: '0 24px', minHeight: 680 }}>
@@ -79,6 +84,7 @@ export const RouterPageKMM = () => {
                           <Route path="/events" component={ Events } />
                           <Route path="/prices" component={ ReportPrice } />
                           <Route path="/pdvs" component={ ReportPdvs} />
+                          <Route path="/leadsCrm" component={ LeadsCrm} />
                           <Redirect to="/leads" />
                         </Switch>
                       </Content>
