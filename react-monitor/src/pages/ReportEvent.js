@@ -37,13 +37,15 @@ export const ReportEvent = ({idEvent, nameEvent}) => {
         if(idEvent){
             getDataEventKMM(idEvent).then((data) => {
                 setAgencias(data);
-                if(data){
+                if(data && data != ''){
                     seTotalFirst(data[0].total);
                     setDealerFirst(data[0].dealer);
                     setTotalRegister(data.map( d => d.total).reduce( (a, b) => a + b, 0));
-                    toogleById("idSpinner");
                     toogleById("idExportCsv");
+                }else{
+                    setTotalRegister(0);
                 }
+                toogleById("idSpinner");
             });
         }     
 
