@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const {Schema} = mongoose;
 
 const LeadSchema = new Schema({
-    leadCreatedDate: {type: String, requiered: true},
+    leadCreatedDate: {type: Date, requiered: true},
     leadType: {type: String, requiered: true},
     leadTypeStr: {type: String, requiered: true},
     leadID: {type: String, requiered: true},

@@ -47,7 +47,7 @@ class Server {
         this.app.get('/infoEvents', findEvents);
         this.app.get('/infoPrice', findPrices);
         this.app.get('/infoPdvs', findPdvs);
-        this.app.get('/findLeads', findLeads);
+        this.app.get('/findLeads/:dateInit/:dateEnd', findLeads);
     }
 
 
