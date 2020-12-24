@@ -95,7 +95,7 @@ export const ExportLeadDataCSV = ({csvData, fileName,total}) => {
             shape="round"
             onClick={(e) => exportToCSV(csvData,fileName)}>
             <CloudDownloadOutlined />
-            Export XLSX
+            Export {total} Regsiters
         </Button>
     )
 }

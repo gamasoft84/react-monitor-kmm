@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { getLeadsCrm } from '../helpers/getDataKMM';
 import { ExportLeadDataCSV } from '../helpers/ExportLeadDataCSV';
-import { Col, Row, Typography, Divider, Table, Space, Button} from 'antd';
+import { Col, Row, Typography, Divider, Table, Space, DatePicker, Spin} from 'antd';
+import {toogleById} from '../util/util'
 
-const { Title } = Typography;
-  
+const { Title, Text } = Typography;
+const { RangePicker } = DatePicker;
+ 
 
 export const LeadsCrm = () => {
 
@@ -12,32 +14,28 @@ export const LeadsCrm = () => {
     const [ totalRegister, setTotalRegister ] = useState([]);
     const [ filteredInfo, setFilteredInfo ] = useState([]);
     const [ sortedInfo, setSortedInfo ] = useState([]);
+    const [dates, setDates] = useState([]);
+    const [hackValue, setHackValue] = useState();
+    const [value, setValue] = useState();
 
-
-
+  
 const handleChange = (pagination, filters, sorter) => {
     console.log('Various parameters', pagination, filters, sorter);
     setSortedInfo(sorter);
     setFilteredInfo(filters);
   };
 
-  const clearFilters = () => {
-    setFilteredInfo([]);
-  };
-
- const clearAll = () => {
-    setSortedInfo([]);
-    setFilteredInfo([]);
-  };
-
  
 const columns = [
     {
-      title: 'Date',
+      title: 'Create Date',
       dataIndex: 'leadCreatedDate',
       key: 'leadCreatedDate',
       sorter: (a, b) => a.leadCreatedDate.toLowerCase() < b.leadCreatedDate.toLowerCase(),
       sortOrder: sortedInfo.columnKey === 'leadCreatedDate' && sortedInfo.order,
+      render: (text, record) => (
+        text.substring(0,10)
+      )    
     },
     {
       title: 'Type',
@@ -196,19 +194,48 @@ const columns = [
 
     
   ];
- 
-
-    useEffect(() => {       
-           getLeadsCrm().then((data) => {                  
-                setSortedInfo(sortedInfo || {});
-                setFilteredInfo(filteredInfo || {});
-                if(data){
-                    setElements(data);
-                    setTotalRegister(data.length);
-                }                
-            });
-    }, [filteredInfo,sortedInfo])    
     
+    const findLeads = (dateInit,dateEnd) => {
+      toogleById("idSpinner");
+      toogleById("idExportCsv");
+      getLeadsCrm(dateInit,dateEnd).then((data) => {                  
+          setSortedInfo(sortedInfo || {});
+          setFilteredInfo(filteredInfo || {});
+          if(data){
+              setElements(data);
+              setTotalRegister(data.length);
+          }      
+          toogleById("idSpinner");
+          toogleById("idExportCsv");          
+      })
+    }
+
+       
+  useEffect(() => {
+    if(value && value.length > 1){
+        let dateInit =  value[0].format('YYYY-MM-DD');
+        let dateEnd =  value[1].format('YYYY-MM-DD');
+        findLeads(dateInit,dateEnd);
+    }  
+  }, [value])  
+
+    const disabledDate = current => {
+      if (!dates || dates.length === 0) {
+        return false;
+      }
+      const tooLate = dates[0] && current.diff(dates[0], 'days') > 7;
+      const tooEarly = dates[1] && dates[1].diff(current, 'days') > 7;
+      return tooEarly || tooLate;
+  };
+
+  const onOpenChange = open => {
+    if (open) {
+      setHackValue([]);
+      setDates([]);
+    } else {
+      setHackValue(undefined);
+    }
+  };
 
     return (        
     <>
@@ -220,9 +247,19 @@ const columns = [
                  <Row>
                     <Col  align="center">
                             <Space style={{ marginBottom: 16 }}>
+                            <RangePicker
+                              value={hackValue || value}
+                              disabledDate={disabledDate}
+                              onCalendarChange={val => setDates(val)}
+                              onChange={val => setValue(val)}
+                              onOpenChange={onOpenChange}
+                            />
+                            <Space size="middle" align="center" id="idSpinner" style={{ display: "none" }}>
+                              <Spin size="large" tip="Loading..." />
+                            </Space>
+                            <div id="idExportCsv">
                                 <ExportLeadDataCSV csvData={elements} fileName={"Leads"} total={totalRegister}/>
-                                <Button onClick={clearFilters}>Clear filters</Button>
-                                <Button onClick={clearAll}>Clear filters and sorters</Button>
+                            </div>
                             </Space>
                             <Table rowKey={elements => elements.leadID} columns={columns} dataSource={elements} onChange={handleChange} scroll={{ x: 1300 }} />  
                     </Col>

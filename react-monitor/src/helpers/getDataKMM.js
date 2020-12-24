@@ -55,8 +55,8 @@ export const getInfoPdvsKMM = async() => {
     return data;
 }
 
-export const getLeadsCrm = async() => {
-    const resp = await fetch(URL_BACK + 'findLeads');
+export const getLeadsCrm = async(dateinit, dateEnd) => {
+    const resp = await fetch(`${URL_BACK}findLeads/${dateinit}/${dateEnd}`);
     const data = await resp.json();
     return data;
 }
