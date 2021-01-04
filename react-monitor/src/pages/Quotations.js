@@ -1,6 +1,6 @@
 import React from 'react'
 import { Divider, Typography} from 'antd';
-import { BandChart } from './BandChart';
+import BarChartHook from '../components/charts/BarChartHook';
 
 
 const { Title } = Typography;
@@ -11,8 +11,7 @@ export const Quotations = () => {
         <div>
            <Title level={ 2 }>Quotations</Title>
             <Divider />
-            <BandChart title = {"Quotations"}/>
-
+            <BarChartHook  title = {"Quotations"}/>
         </div>
     )
 }

@@ -1,8 +1,9 @@
 {
-  "name": "ticket-app",
+  "name": "react-monitor",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@amcharts/amcharts4": "^4.10.13",
     "@ant-design/icons": "^4.2.2",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
