@@ -1,4 +1,3 @@
-const TicketList = require('./ticket-list');
 
 
 class Sockets {
@@ -8,7 +7,7 @@ class Sockets {
         this.io = io;
 
         // Crear la instancia de nuestro ticketlist
-        this.ticketList = new TicketList();
+       // this.ticketList = new TicketList();
 
         this.socketEvents();
         
@@ -21,16 +20,16 @@ class Sockets {
            console.log('cliente conectado');
 
            socket.on( 'solicitar-ticket' , (data, callback) => {
-                const nuevoTicket = this.ticketList.crearTicket();
+                const nuevoTicket = null;//this.ticketList.crearTicket();
                 callback( nuevoTicket );
            });
 
            socket.on( 'siguiente-ticket-trabajar', ({ agente, escritorio }, callback) => {
 
-                const suTicket = this.ticketList.asignarTicket( agente, escritorio ); 
+                const suTicket = null//this.ticketList.asignarTicket( agente, escritorio ); 
                 callback( suTicket );
 
-                this.io.emit( 'ticket-asignado', this.ticketList.ultimos13 );
+                this.io.emit( 'ticket-asignado', null);//this.ticketList.ultimos13 );
            })
             
         
