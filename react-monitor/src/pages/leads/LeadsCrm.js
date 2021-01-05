@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { getLeadsCrm } from '../helpers/getDataKMM';
-import { ExportLeadDataCSV } from '../helpers/ExportLeadDataCSV';
+import { getLeadsCrm } from '../../helpers/getDataKMM';
+import { ExportLeadDataCSV } from '../../helpers/ExportLeadDataCSV';
 import { Col, Row, Typography, Divider, Table, Space, DatePicker, Spin} from 'antd';
-import {toogleById} from '../util/util'
+import {toogleById} from '../../util/util'
 
-const { Title, Text } = Typography;
+const { Title } = Typography;
 const { RangePicker } = DatePicker;
  
 

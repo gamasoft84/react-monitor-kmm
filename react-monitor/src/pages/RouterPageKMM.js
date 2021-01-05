@@ -22,7 +22,7 @@ import { TestsDrives } from './TestsDrives';
 import { Events } from './Events';
 import { ReportPrice } from './ReportPrice';
 import { ReportPdvs } from './ReportPdvs';
-import { LeadsCrm } from './LeadsCrm';
+import { LeadsCrm } from './leads/LeadsCrm';
 import SummaryByDay from './summary/SummaryByDay';
 import VehicleOfInterest from './leads/VehicleOfInterest';
 

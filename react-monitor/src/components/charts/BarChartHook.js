@@ -17,7 +17,7 @@ function BarChartHook({title}) {
           setData(data);
           console.log('data consultada', data.length);
       }); 
-  }, [])
+  }, [title])
  
 
   const chartRef = useRef(null);

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { getCountByTypeKMM } from '../../helpers/getDataKMM';
-import { Card, Spin, Space } from 'antd';
+import { Card, Spin } from 'antd';
 
 
 const ItemSummary = ({ item }) => {
@@ -25,7 +25,6 @@ const ItemSummary = ({ item }) => {
                  {
                     spinner && <Spin size="small" tip="Loading..." />
                  }
-
             </Card>
             <br></br>
         </>
