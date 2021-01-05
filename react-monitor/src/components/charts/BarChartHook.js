@@ -9,7 +9,7 @@ am4core.useTheme(am4themes_animated);
 
 function BarChartHook({title}) {
 
-  const [data, setData] = useState([]);
+  const [data, setData] = useState();
 
 
   useEffect(() => {
@@ -79,8 +79,9 @@ function BarChartHook({title}) {
 
   return (
     <>
-      {data && data.length >0 ? <h5>Total [{data.map(d => d.total).reduce( (a, b) => a + b )}]</h5> : 'Cargando... '}
-      <div id={`div_${title}`} style={{ width: "100%", height: "500px" }}></div>
+      {data  ? (data && data.length > 0 ? <h5>Total [{data.map(d => d.total).reduce( (a, b) => a + b )}]</h5>: <h5>Total [0]</h5>)
+             : 'Cargando...'}
+      <div id={`div_${title}`} style={{ width: "100%", height: `${data && data.length * 19 + 150}px ` }}></div>
     </>
   );
 }

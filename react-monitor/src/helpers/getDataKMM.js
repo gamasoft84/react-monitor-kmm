@@ -60,3 +60,11 @@ export const getLeadsCrm = async(dateinit, dateEnd) => {
     const data = await resp.json();
     return data;
 }
+
+//summary section
+export const getCountByTypeKMM = async(type) => {
+    const resp = await fetch(`https://dashboardkmmmysalesback.azurewebsites.net/count${type}ByDay`);
+    const total = await resp.json();
+    console.log('Total',type);
+    return total;
+}

@@ -23,6 +23,7 @@ import { Events } from './Events';
 import { ReportPrice } from './ReportPrice';
 import { ReportPdvs } from './ReportPdvs';
 import { LeadsCrm } from './LeadsCrm';
+import SummaryByDay from './summary/SummaryByDay';
 
 const { SubMenu } = Menu;
 const { Header, Footer, Sider, Content } = Layout;
@@ -56,9 +57,10 @@ export const RouterPageKMM = () => {
                           style={{ height: '100%' }}
                         >
                           <SubMenu key="sub1" icon={<BarChartOutlined />} title="Graphs">
+                            <Menu.Item key="0"><Link to="/summaryByDay">Summary By Day</Link></Menu.Item>
                             <Menu.Item key="1"><Link to="/leads">Leads</Link></Menu.Item>
                             <Menu.Item key="2"><Link to="/quotations">Quotations</Link></Menu.Item>
-                            <Menu.Item key="3"><Link to="/testsDrives">Test Drive</Link></Menu.Item>                          
+                            <Menu.Item key="3"><Link to="/drivetests">Test Drive</Link></Menu.Item>                          
                           </SubMenu>
                           <Menu.Item key="4" icon={<CloudDownloadOutlined />}>
                               <Link to="/events">Events</Link>
@@ -80,11 +82,12 @@ export const RouterPageKMM = () => {
                         <Switch>
                           <Route path="/leads" component={ Leads } />
                           <Route path="/quotations" component={ Quotations } />
-                          <Route path="/testsDrives" component={ TestsDrives } />
+                          <Route path="/drivetests" component={ TestsDrives } />
                           <Route path="/events" component={ Events } />
                           <Route path="/prices" component={ ReportPrice } />
                           <Route path="/pdvs" component={ ReportPdvs} />
                           <Route path="/leadsCrm" component={ LeadsCrm} />
+                          <Route path="/summaryByDay" component={ SummaryByDay } />
                           <Redirect to="/leads" />
                         </Switch>
                       </Content>
