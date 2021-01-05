@@ -20,7 +20,40 @@ const findLeads = async (req = request, res  = response) => {
     res.send(leads);
 }
 
+const findVehiclesOfInterest = async (req = request, res  = response) => {     
+    const leads = await Lead.aggregate(
+            [
+                { 
+                    "$group" : { 
+                        "_id" : { 
+                            "vehicleNameOfInterest1" : "$vehicleNameOfInterest1"
+                        }, 
+                        "COUNT(*)" : { 
+                            "$sum" : 1
+                        }
+                    }
+                }, 
+                { 
+                    "$project" : { 
+                        "total" : "$COUNT(*)", 
+                        "vechicle" : "$_id.vehicleNameOfInterest1", 
+                        "_id" : 0
+                    }
+                }, 
+                { 
+                    "$sort" : { 
+                        "total" : -1
+                    }
+                }
+            ]
+        );
+    
+        console.log('Total Leads: ', leads);
+    res.send(leads);
+}
+
 
 module.exports = {
-    findLeads
+    findLeads,
+    findVehiclesOfInterest
 }

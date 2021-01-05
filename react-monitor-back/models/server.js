@@ -11,7 +11,7 @@ const Sockets  = require('./sockets');
 const {findEventById,findDataTestDriveByIdEvent,findEvents} = require('../controllers/eventsController');
 const {findPrices} = require('../controllers/pricesController');
 const {findPdvs} = require('../controllers/pdvsController');
-const {findLeads} = require('../controllers/leadsController');
+const {findLeads, findVehiclesOfInterest} = require('../controllers/leadsController');
 require("../database/leadsDB");
 
 
@@ -48,6 +48,7 @@ class Server {
         this.app.get('/infoPrice', findPrices);
         this.app.get('/infoPdvs', findPdvs);
         this.app.get('/findLeads/:dateInit/:dateEnd', findLeads);
+        this.app.get('/findVehiclesOfInterest', findVehiclesOfInterest);
     }
 
 
