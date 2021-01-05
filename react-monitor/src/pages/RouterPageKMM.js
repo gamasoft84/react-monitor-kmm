@@ -24,6 +24,7 @@ import { ReportPrice } from './ReportPrice';
 import { ReportPdvs } from './ReportPdvs';
 import { LeadsCrm } from './LeadsCrm';
 import SummaryByDay from './summary/SummaryByDay';
+import VehicleOfInterest from './leads/VehicleOfInterest';
 
 const { SubMenu } = Menu;
 const { Header, Footer, Sider, Content } = Layout;
@@ -65,17 +66,20 @@ export const RouterPageKMM = () => {
                           <Menu.Item key="4" icon={<CloudDownloadOutlined />}>
                               <Link to="/events">Events</Link>
                           </Menu.Item>
-                        <Menu.Item key="5" icon={<DollarCircleOutlined  />}>
-                          <Link to="/prices">
-                            Prices
-                          </Link>
-                        </Menu.Item>
-                        <Menu.Item key="6" icon={<HomeOutlined  />}>
-                          <Link to="/pdvs">PDVS</Link>
-                        </Menu.Item>
-                        <Menu.Item key="7" icon={<UserOutlined  />}>
-                          <Link to="/leadsCrm">Leads CRM</Link>
-                        </Menu.Item>
+                          <Menu.Item key="5" icon={<DollarCircleOutlined  />}>
+                            <Link to="/prices">
+                              Prices
+                            </Link>
+                          </Menu.Item>
+                          <Menu.Item key="6" icon={<HomeOutlined  />}>
+                            <Link to="/pdvs">PDVS</Link>
+                          </Menu.Item>                         
+                          <SubMenu key="menuCrm" icon={<UserOutlined  />} title="CRM">
+                                <Menu.Item key="7"><Link to="/leadsCrm">Leads</Link></Menu.Item>
+                                <Menu.Item key="8"><Link to="/leadsType">Lead Type</Link></Menu.Item>                          
+                                <Menu.Item key="9"><Link to="/TimeFrame">Time Frame</Link></Menu.Item>
+                                <Menu.Item key="10"><Link to="/vehicleOfInterest">Vehicles of interest</Link></Menu.Item>
+                            </SubMenu>
                         </Menu>
                       </Sider>
                       <Content style={{ padding: '0 24px', minHeight: 680 }}>
@@ -88,6 +92,7 @@ export const RouterPageKMM = () => {
                           <Route path="/pdvs" component={ ReportPdvs} />
                           <Route path="/leadsCrm" component={ LeadsCrm} />
                           <Route path="/summaryByDay" component={ SummaryByDay } />
+                          <Route path="/vehicleOfInterest" component={ VehicleOfInterest } />
                           <Redirect to="/leads" />
                         </Switch>
                       </Content>
