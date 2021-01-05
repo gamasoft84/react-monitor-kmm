@@ -25,6 +25,8 @@ import { ReportPdvs } from './ReportPdvs';
 import { LeadsCrm } from './leads/LeadsCrm';
 import SummaryByDay from './summary/SummaryByDay';
 import VehicleOfInterest from './leads/VehicleOfInterest';
+import TimeFramePurcharse from './leads/TimeFramePurcharse';
+import LeadType from './leads/LeadType';
 
 const { SubMenu } = Menu;
 const { Header, Footer, Sider, Content } = Layout;
@@ -77,7 +79,7 @@ export const RouterPageKMM = () => {
                           <SubMenu key="menuCrm" icon={<UserOutlined  />} title="CRM">
                                 <Menu.Item key="7"><Link to="/leadsCrm">Leads</Link></Menu.Item>
                                 <Menu.Item key="8"><Link to="/leadsType">Lead Type</Link></Menu.Item>                          
-                                <Menu.Item key="9"><Link to="/TimeFrame">Time Frame</Link></Menu.Item>
+                                <Menu.Item key="9"><Link to="/timeFrame">Time Frame</Link></Menu.Item>
                                 <Menu.Item key="10"><Link to="/vehicleOfInterest">Vehicles of interest</Link></Menu.Item>
                             </SubMenu>
                         </Menu>
@@ -93,6 +95,8 @@ export const RouterPageKMM = () => {
                           <Route path="/leadsCrm" component={ LeadsCrm} />
                           <Route path="/summaryByDay" component={ SummaryByDay } />
                           <Route path="/vehicleOfInterest" component={ VehicleOfInterest } />
+                          <Route path="/timeFrame" component={ TimeFramePurcharse } />
+                          <Route path="/leadsType" component={ LeadType } />
                           <Redirect to="/leads" />
                         </Switch>
                       </Content>

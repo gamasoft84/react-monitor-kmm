@@ -73,3 +73,15 @@ export const getFindVehiclesOfInterest = async() => {
     const data = await resp.json();
     return data;
 }
+
+export const findLeadTypes = async() => {
+    const resp = await fetch(`${URL_BACK}findLeadTypes`);
+    const data = await resp.json();
+    return data;
+}
+
+export const findTimesFrame = async() => {
+    const resp = await fetch(`${URL_BACK}findTimesFrame`);
+    const data = await resp.json();
+    return data;
+}
