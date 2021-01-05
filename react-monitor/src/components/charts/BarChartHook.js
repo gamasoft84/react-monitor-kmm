@@ -7,17 +7,20 @@ import { getDataKMM } from "../../helpers/getDataKMM";
 
 am4core.useTheme(am4themes_animated);
 
-function BarChartHook({title}) {
+function BarChartHook({title, dataProp, categoryY = 'dealer'}) {
 
   const [data, setData] = useState();
 
-
   useEffect(() => {
-      getDataKMM(title).then((data) => {
+      if(!dataProp ){
+        getDataKMM(title).then((data) => {
           setData(data);
-          console.log('data consultada', data.length);
+          console.log(`getDataKMM ${title}`, data.length);
       }); 
-  }, [title])
+      }else{
+        setData(dataProp);
+      }
+  }, [dataProp,title])
  
 
   const chartRef = useRef(null);
@@ -35,7 +38,7 @@ function BarChartHook({title}) {
 
     let categoryAxis = chart.yAxes.push(new am4charts.CategoryAxis());
     categoryAxis.renderer.grid.template.location = 0;
-    categoryAxis.dataFields.category = "dealer";
+    categoryAxis.dataFields.category = categoryY;
     categoryAxis.renderer.minGridDistance = 1;
     categoryAxis.renderer.inversed = true;
     categoryAxis.renderer.grid.template.disabled = true;
@@ -44,7 +47,7 @@ function BarChartHook({title}) {
     valueAxis.min = 0;
 
     let series = chart.series.push(new am4charts.ColumnSeries());
-    series.dataFields.categoryY = "dealer";
+    series.dataFields.categoryY = categoryY;
     series.dataFields.valueX = "total";
     series.tooltipText = "{valueX.value}";
     series.columns.template.strokeOpacity = 0;
@@ -70,7 +73,7 @@ function BarChartHook({title}) {
     return () => {
       chart.dispose();
     };
-  }, []);
+  }, [title,categoryY,data]);
 
   // When the data prop changes it will update the chart
   useLayoutEffect(() => {

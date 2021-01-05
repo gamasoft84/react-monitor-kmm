@@ -4,8 +4,6 @@ const URL_BACK = "http://localhost:7979/";
 const URL_BACK_DASHBOARD = "https://dashboardkmmmysalesback.azurewebsites.net/";
 
 
-
-
 export const getInfoEventsKMM = async() => {
     const resp = await fetch(URL_BACK + 'infoEvents');
     const data = await resp.json();
@@ -67,12 +65,11 @@ export const getLeadsCrm = async(dateinit, dateEnd) => {
 export const getCountByTypeKMM = async(type) => {
     const resp = await fetch(`${URL_BACK_DASHBOARD}count${type}ByDay`);
     const total = await resp.json();
-    console.log('Total',type);
     return total;
 }
 
 export const getFindVehiclesOfInterest = async() => {
-    const resp = await fetch(`${URL_BACK_DASHBOARD}findVehiclesOfInterest`);
+    const resp = await fetch(`${URL_BACK}findVehiclesOfInterest`);
     const data = await resp.json();
     return data;
 }

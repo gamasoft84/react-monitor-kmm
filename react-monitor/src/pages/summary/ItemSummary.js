@@ -15,7 +15,7 @@ const ItemSummary = ({ item }) => {
             setTotal(total);
             setSpinner(false);
         });
-    }, [])
+    }, [item])
 
     return (
         <>
