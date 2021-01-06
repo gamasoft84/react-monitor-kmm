@@ -19,7 +19,7 @@ const TimeFramePurcharse = () => {
         <div>           
             <Title level={ 2 }>Time Frame Purcharse</Title>
             <Divider />
-            <BarChartHook  title = {"TimeFramePurcharse"} dataProp ={data} categoryY="timeFrame"/>
+            {data && <BarChartHook  title = {"TimeFramePurcharse"} dataProp ={data} categoryY="timeFrame"/>}
         </div>
     )
 }

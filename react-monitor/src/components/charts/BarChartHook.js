@@ -12,14 +12,19 @@ function BarChartHook({title, dataProp, categoryY = 'dealer'}) {
   const [data, setData] = useState();
 
   useEffect(() => {
-      if(!dataProp ){
+      if(!dataProp){
         getDataKMM(title).then((data) => {
           setData(data);
-          console.log(`getDataKMM ${title}`, data.length);
-      }); 
+          console.log(`getDataKMM ${title}`,data.length);
+        });
+
       }else{
         setData(dataProp);
-      }
+      }     
+
+      return () => {
+        setData();
+      };
   }, [dataProp,title])
  
 
