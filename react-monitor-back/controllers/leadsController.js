@@ -36,7 +36,46 @@ const findVehiclesOfInterest = async (req = request, res  = response) => {
                 { 
                     "$project" : { 
                         "total" : "$COUNT(*)", 
-                        "vechicle" : "$_id.vehicleNameOfInterest1", 
+                        "vehicle" : "$_id.vehicleNameOfInterest1", 
+                        "_id" : 0
+                    }
+                },
+                {
+                    "$match": {
+                        "total": {
+                            "$gt": 40
+                        }
+                    }
+                },         
+                { 
+                    "$sort" : { 
+                        "total" : -1
+                    }
+                }
+            ]
+        );
+    
+        console.log('Total: ', leads);
+    res.send(leads);
+}
+
+const findLeadTypes = async (req = request, res  = response) => {     
+    const leads = await Lead.aggregate(
+            [
+                { 
+                    "$group" : { 
+                        "_id" : { 
+                            "leadTypeStr" : "$leadTypeStr"
+                        }, 
+                        "COUNT(*)" : { 
+                            "$sum" : 1
+                        }
+                    }
+                }, 
+                { 
+                    "$project" : { 
+                        "total" : "$COUNT(*)", 
+                        "leadType" : "$_id.leadTypeStr", 
                         "_id" : 0
                     }
                 }, 
@@ -46,14 +85,46 @@ const findVehiclesOfInterest = async (req = request, res  = response) => {
                     }
                 }
             ]
-        );
-    
-        console.log('Total Leads: ', leads);
+        );    
+        console.log('Total: ', leads);
+    res.send(leads);
+}
+
+const findTimesFrame = async (req = request, res  = response) => {     
+    const leads = await Lead.aggregate(
+            [
+                { 
+                    "$group" : { 
+                        "_id" : { 
+                            "purchaseIntensionTimeFrameStr" : "$purchaseIntensionTimeFrameStr"
+                        }, 
+                        "COUNT(*)" : { 
+                            "$sum" : 1
+                        }
+                    }
+                }, 
+                { 
+                    "$project" : { 
+                        "total" : "$COUNT(*)", 
+                        "timeFrame" : "$_id.purchaseIntensionTimeFrameStr", 
+                        "_id" : 0
+                    }
+                }, 
+                { 
+                    "$sort" : { 
+                        "total" : -1
+                    }
+                }
+            ]
+        );    
+        console.log('Total: ', leads);
     res.send(leads);
 }
 
 
 module.exports = {
     findLeads,
-    findVehiclesOfInterest
+    findVehiclesOfInterest,
+    findLeadTypes,
+    findTimesFrame
 }
