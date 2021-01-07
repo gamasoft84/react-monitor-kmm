@@ -19,7 +19,7 @@ const LeadType = () => {
         <div>           
             <Title level={ 2 }>Lead Types</Title>
             <Divider />
-            {data && <BarChartHook  title = {"LeadType"} dataProp ={data} categoryY="leadType"/>}
+            {data && <BarChartHook  title = {"LeadType"} data ={data} categoryY="leadType"/>}
         </div>
     )
 }

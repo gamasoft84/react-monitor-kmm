@@ -1,31 +1,13 @@
-import React, { useRef, useLayoutEffect, useEffect, useState } from "react";
+import React, { useRef, useLayoutEffect} from "react";
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 import am4themes_frozen from "@amcharts/amcharts4/themes/frozen";
-import { getDataKMM } from "../../helpers/getDataKMM";
 
 am4core.useTheme(am4themes_animated);
 
-function BarChartHook({title, dataProp, categoryY = 'dealer'}) {
+function BarChartHook({title, data, categoryY = 'dealer'}) {
 
-  const [data, setData] = useState();
-
-  useEffect(() => {
-      if(!dataProp){
-        getDataKMM(title).then((data) => {
-          setData(data);
-          console.log(`getDataKMM ${title}`,data.length);
-        });
-
-      }else{
-        setData(dataProp);
-      }     
-
-      return () => {
-        setData();
-      };
-  }, [dataProp,title])
  
 
   const chartRef = useRef(null);
@@ -44,7 +26,7 @@ function BarChartHook({title, dataProp, categoryY = 'dealer'}) {
     let categoryAxis = chart.yAxes.push(new am4charts.CategoryAxis());
     categoryAxis.renderer.grid.template.location = 0;
     categoryAxis.dataFields.category = categoryY;
-    categoryAxis.renderer.minGridDistance = 1;
+    categoryAxis.renderer.minGridDistance = 5;
     categoryAxis.renderer.inversed = true;
     categoryAxis.renderer.grid.template.disabled = true;
 

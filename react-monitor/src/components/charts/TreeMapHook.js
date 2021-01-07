@@ -2,42 +2,16 @@ import React, { useRef, useLayoutEffect, useEffect, useState } from "react";
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
-import { getDataKMM } from "../../helpers/getDataKMM";
 import _ from "lodash";
 
 
 am4core.useTheme(am4themes_animated);
 
-function TreeMapHook({title, categoryY = 'dealer'}) { 
+function TreeMapHook({title, data, categoryY = 'dealer'}) { 
 
-  const [data, setData] = useState();
   const [total, setTotal] = useState(0)
 
-  useEffect(() => {
-
-        getDataKMM(title).then((data) => {
-          setTotal(data.map(d => d.total).reduce( (a, b) => a + b ))
-          data =
-            _.chain(data)
-              .groupBy("group")
-              .map((value, key) => ({ group: key, children: value.map((v) => (
-                {
-                  name: v.dealer,
-                  total: v.total}
-                )) }))
-              .value();
-          setData(data);
-          console.log(`getDataKMM ${title}`,data.length);
-        });
-
-    
-      return () => {
-        setData();
-      };
-  }, [title])
- 
-
-  const chartRef = useRef(null);
+   const chartRef = useRef(null);
 
   useLayoutEffect(() => {
     /* Chart code */
@@ -88,6 +62,16 @@ function TreeMapHook({title, categoryY = 'dealer'}) {
 
   // When the data prop changes it will update the chart
   useLayoutEffect(() => {
+    setTotal(data?.map(d => d.total).reduce( (a, b) => a + b ))
+    data =
+            _.chain(data)
+              .groupBy("group")
+              .map((value, key) => ({ group: key, children: value.map((v) => (
+                {
+                  name: v.dealer,
+                  total: v.total}
+                )) }))
+              .value();
     chartRef.current.data = data;
   }, [data]);
 

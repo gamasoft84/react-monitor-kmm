@@ -19,7 +19,7 @@ const VehicleOfInterest = () => {
         <div>           
             <Title level={ 2 }>Vehicles of Interes</Title>
             <Divider />
-            {data && <BarChartHook  title = {"VehicleOfInteres"} dataProp ={data} categoryY="vehicle"/>}
+            {data && <BarChartHook  title = {"VehicleOfInteres"} data ={data} categoryY="vehicle"/>}
         </div>
     )
 }
