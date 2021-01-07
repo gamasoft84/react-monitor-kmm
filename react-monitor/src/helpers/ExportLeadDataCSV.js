@@ -19,7 +19,7 @@ export const ExportLeadDataCSV = ({csvData, fileName,total}) => {
         console.log('total',total);
         //Usint addTable
         const csvDataArray = objectToArrayValues(csvData); 
-        console.log(csvData);
+        //console.log(csvData);
         //bold
          worksheet.getRow(1).font = {bold: true} 
          //center

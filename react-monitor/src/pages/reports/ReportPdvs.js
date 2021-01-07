@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getInfoPdvsKMM } from '../helpers/getDataKMM';
+import { getInfoPdvsKMM } from '../../helpers/getDataKMM';
 import { Col, Row, Typography, Divider, Table, Space, Button} from 'antd';
 
 const { Title, Text } = Typography;

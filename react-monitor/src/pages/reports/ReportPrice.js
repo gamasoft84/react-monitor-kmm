@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { getInfoPriceKMM } from '../helpers/getDataKMM';
-import { withCommas } from '../util/util';
+import { getInfoPriceKMM } from '../../helpers/getDataKMM';
+import { withCommas } from '../../util/util';
 import { Col, Row, Typography, Divider, Table, Space, Button} from 'antd';
 
 const { Title, Text } = Typography;

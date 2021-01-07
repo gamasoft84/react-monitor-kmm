@@ -16,17 +16,17 @@ import {
   Redirect
 } from 'react-router-dom';
 
-import { Leads } from './Leads';
-import { Quotations } from './Quotations';
-import { TestsDrives } from './TestsDrives';
-import { Events } from './Events';
-import { ReportPrice } from './ReportPrice';
-import { ReportPdvs } from './ReportPdvs';
-import { LeadsCrm } from './leads/LeadsCrm';
-import SummaryByDay from './summary/SummaryByDay';
-import VehicleOfInterest from './leads/VehicleOfInterest';
-import TimeFramePurcharse from './leads/TimeFramePurcharse';
-import LeadType from './leads/LeadType';
+import { Leads } from '../Leads';
+import { Quotations } from '../Quotations';
+import { TestsDrives } from '../TestsDrives';
+import { Events } from '../eventsmk/Events';
+import { ReportPrice } from '../reports/ReportPrice';
+import { ReportPdvs } from '../reports/ReportPdvs';
+import SummaryByDay from '../summary/SummaryByDay';
+import { LeadsCrm } from '../leadscrm/LeadsCrm';
+import VehicleOfInterest from '../leadscrm/VehicleOfInterest';
+import TimeFramePurcharse from '../leadscrm/TimeFramePurcharse';
+import LeadType from '../leadscrm/LeadType';
 
 const { SubMenu } = Menu;
 const { Header, Footer, Sider, Content } = Layout;
