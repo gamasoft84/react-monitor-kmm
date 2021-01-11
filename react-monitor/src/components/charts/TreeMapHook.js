@@ -62,7 +62,7 @@ function TreeMapHook({title, data, categoryY = 'dealer'}) {
 
   // When the data prop changes it will update the chart
   useLayoutEffect(() => {
-    setTotal(data?.map(d => d.total).reduce( (a, b) => a + b ))
+    setTotal(data && data.length>0  ? data.map(d => d.total).reduce( (a, b) => a + b ): 0)
     data =
             _.chain(data)
               .groupBy("group")

@@ -102,7 +102,7 @@ export const RouterPageKMM = () => {
                       </Content>
                     </Layout>
                   </Content>
-                  <Footer style={{ textAlign: 'center' }}> Design ©2020 Created by Gamasoft</Footer>
+                  <Footer style={{ textAlign: 'center' }}> Design ©2021 Created by Gamasoft</Footer>
                 </Layout>
         </Router>
     )
