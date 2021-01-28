@@ -5,7 +5,8 @@ import {
   CloudDownloadOutlined,
   DollarCircleOutlined,
   HomeOutlined,
-  UserOutlined 
+  UserOutlined,
+  ApiOutlined
 } from '@ant-design/icons';
 
 import {
@@ -27,6 +28,7 @@ import { LeadsCrm } from '../leadscrm/LeadsCrm';
 import VehicleOfInterest from '../leadscrm/VehicleOfInterest';
 import TimeFramePurcharse from '../leadscrm/TimeFramePurcharse';
 import LeadType from '../leadscrm/LeadType';
+import { SendData } from '../apigateway/SendData';
 
 const { SubMenu } = Menu;
 const { Header, Footer, Sider, Content } = Layout;
@@ -82,6 +84,12 @@ export const RouterPageKMM = () => {
                                 <Menu.Item key="9"><Link to="/timeFrame">Time Frame</Link></Menu.Item>
                                 <Menu.Item key="10"><Link to="/vehicleOfInterest">Vehicles of interest</Link></Menu.Item>
                             </SubMenu>
+                            <SubMenu key="menuApiGateway" icon={<ApiOutlined />} title="API GATEWAY">
+                                <Menu.Item key="11"><Link to="/events">Top 10 Request</Link></Menu.Item>
+                                <Menu.Item key="12"><Link to="/leadsCrm">Request by Date</Link></Menu.Item>
+                                <Menu.Item key="13"><Link to="/apigategay/sendata">Send Data</Link></Menu.Item>
+
+                            </SubMenu>
                         </Menu>
                       </Sider>
                       <Content style={{ padding: '0 24px', minHeight: 680 }}>
@@ -97,6 +105,7 @@ export const RouterPageKMM = () => {
                           <Route path="/vehicleOfInterest" component={ VehicleOfInterest } />
                           <Route path="/timeFrame" component={ TimeFramePurcharse } />
                           <Route path="/leadsType" component={ LeadType } />
+                          <Route path="/apigategay/sendata" component={ SendData } />
                           <Redirect to="/leads" />
                         </Switch>
                       </Content>

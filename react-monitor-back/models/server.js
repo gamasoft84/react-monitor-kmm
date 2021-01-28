@@ -7,11 +7,13 @@ const socketio = require('socket.io');
 const path     = require('path');
 const cors     = require('cors');
 const Sockets  = require('./sockets');
+const bodyParser =  require('body-parser');
 
 const {findEventById,findDataTestDriveByIdEvent,findEvents} = require('../controllers/eventsController');
 const {findPrices} = require('../controllers/pricesController');
 const {findPdvs} = require('../controllers/pdvsController');
 const {findLeads, findVehiclesOfInterest, findLeadTypes, findTimesFrame} = require('../controllers/leadsController');
+const { findRequestByIdApi } = require('../controllers/requestApisController');
 require("../database/leadsDB");
 
 
@@ -41,6 +43,9 @@ class Server {
         // Configurar cors
         this.app.use( cors() );
 
+        this.app.use(bodyParser.json())
+
+
         // Request
         this.app.get('/dataEvents/:idEvent', findEventById);
         this.app.get('/dataTestsDriveEvents/:idEvent', findDataTestDriveByIdEvent);
@@ -51,6 +56,7 @@ class Server {
         this.app.get('/findVehiclesOfInterest', findVehiclesOfInterest);
         this.app.get('/findLeadTypes', findLeadTypes);
         this.app.get('/findTimesFrame', findTimesFrame);
+        this.app.post('/findRequestByIdApi', findRequestByIdApi);
     }
 
 

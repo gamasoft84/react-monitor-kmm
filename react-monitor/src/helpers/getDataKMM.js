@@ -1,7 +1,8 @@
+import { fetchSinToken } from "./fetch";
 
 
-const URL_BACK = "http://localhost:7979/";
-const URL_BACK_DASHBOARD = "https://dashboardkmmmysalesback.azurewebsites.net/";
+const URL_BACK = process.env.REACT_APP_API_BACK;
+const URL_BACK_DASHBOARD = process.env.URL_BACK_DASHBOARD_MYSALES;
 
 
 export const getInfoEventsKMM = async() => {
@@ -82,6 +83,43 @@ export const findLeadTypes = async() => {
 
 export const findTimesFrame = async() => {
     const resp = await fetch(`${URL_BACK}findTimesFrame`);
+    const data = await resp.json();
+    return data;
+}
+
+
+export const getDataApis = async() => {
+    const data = [
+            {id: 2	,name: "SubmitPOVINdata"},
+            {id: 1	,name: "SubmitLeadData"},
+            {id: 3	,name: "SubmitInvoiceVINdata"},
+            {id: 4	,name: "SubmitVehicleDetailData"},
+            {id: 5	,name: "SubmitStaffData"},
+            {id: 6	,name: "SubmitCheckinLeadData"},
+            {id: 7	,name: "SubmitCustomerInformation"},
+            {id: 8	,name: "SubmitTestDriveFeedback"},
+            {id: 9	,name: "RetrieveVehicleStockCount"},
+            {id: 10	,name: "RequestPOVINdata"},
+            {id: 11	,name: "RetrievePurchaseHistory"},
+            {id: 15	,name: "SubmitVehicleInfo"},
+            {id: 16	,name: "SubmitFinancialApproval"},
+            {id: 17	,name: "SubmitBNPPDVInfo"},
+            {id: 18	,name: "SubmitBNPUsersInfo"},
+            {id: 19	,name: "SubmitPromotionalPlans"},
+            {id: 20	,name: "RetrievePaymentInfo"},
+            {id: 21	,name: "RequestFinancialQuotation"},
+            {id: 23	,name: "RequestAnnuityQuotation"},
+            {id: 24	,name: "SubmitClosedLeadData"},
+            {id: 25	,name: "SubmitLeadDataScoring"}
+        ];
+        
+    return data;
+}
+
+
+
+export const findRequestByIdApi = async(idApi, top) => {
+    const resp = await fetchSinToken('findRequestByIdApi',{idApi, top},'POST');
     const data = await resp.json();
     return data;
 }
