@@ -7,7 +7,7 @@ import { fetchAGSinToken } from '../../helpers/fetchApiGateway';
 const { Title  } = Typography;
   
 
-export const ReportRequestByApi = ({idApi, nameApi}) => {
+export const ReportRequestByApi = ({idApi, nameApi, idNumberRegiser}) => {
 
     const [ elements, setElements ] = useState([]);
     const [ filteredInfo, setFilteredInfo ] = useState([]);
@@ -53,7 +53,6 @@ const columns = [
       sortOrder: sortedInfo.columnKey === 'TRSC_RSLT_CD' && sortedInfo.order,
       render: (text, record) => (
         <>
-
             <Tag color={text !== 'GCORESU' ? 'volcano' : 'green'} key={text}>
               {text}
             </Tag>
@@ -90,8 +89,7 @@ const columns = [
  
 
     useEffect(() => {       
-            const top = 3;
-            findRequestByIdApi(idApi, top).then((data) => {                  
+            findRequestByIdApi(idApi, idNumberRegiser).then((data) => {                  
                 setSortedInfo(sortedInfo || {});
                 setFilteredInfo(filteredInfo || {});
                 if(data){
@@ -99,7 +97,8 @@ const columns = [
                 }                
             });
             setResponseData([]);
-    }, [filteredInfo,sortedInfo,idApi])    
+    }, [filteredInfo,sortedInfo,idApi,idNumberRegiser])    
+
     
     const startSendData = async () =>{
       const res = await sendData();
@@ -138,12 +137,19 @@ const columns = [
                     <li key={d.messageId}>{d.messageId}
                       <ul>
                           <li>
-                            <Tag color={d.resultCode != 'GCORESU' ? 'volcano' : 'green'}>
+                            <Tag color={d.resultCode !== 'GCORESU' ? 'volcano' : 'green'}>
                               {d.resultCode}
                             </Tag>
                           </li>
-                          <li>{d.errorManagement?.errorCode}</li>
-                          <li>{d.errorManagement?.errorDescription}</li>
+                          {
+                            d.errorManagement?.errorCode &&
+                            <>
+                              <li>{d.errorManagement?.errorCode}</li>
+                              <li>{JSON.stringify(d.errorManagement?.errorDescription)}</li>
+                            </>
+                          
+                          }
+                          
                       </ul>
                       <hr></hr>
                     </li>

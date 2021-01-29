@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Col, Row, Typography, Divider, Select } from 'antd';
+import { Col, Row, Typography, Divider, Select, Button} from 'antd';
 import { getDataApis } from '../../helpers/getDataKMM';
 import { ReportRequestByApi } from './ReportRequestByApi';
 const { Option } = Select;
@@ -12,6 +12,9 @@ export const SendData = () => {
     const [ apisKMM, setApisKMM] = useState([]);
     const [ idApi, setIdApi] = useState();
     const [ nameApi, setNameApi] = useState('');
+    const [ idNumberRegiser, setIdNumberRegiser] = useState();
+    const [ idApiBkp, setIdApiBkp] = useState();
+    const [ idNumberRegiserBkp, setIdNumberRegiserBkp] = useState(5);
 
 
     useEffect(() => {
@@ -21,8 +24,30 @@ export const SendData = () => {
     }, [])  
 
     const apiOnChangeSelect = (idApi,nameApi) => {
-        setIdApi(idApi);
+        setIdApiBkp(idApi);
         setNameApi(nameApi);
+    }
+
+    const numberRegiterOnChangeSelect = (idNumberRegiser, name) => {
+        setIdNumberRegiserBkp(idNumberRegiser);
+    }
+
+    const generateOptions = (total) =>{
+            const numbers = [];
+            for (let index = 1; index <= total; index++) {
+                numbers.push(index * 5);               
+            }        
+            return numbers.map((e, index) => {
+            return (
+               <Option key={ e } value={ e }>{e}</Option>
+            )
+         })
+    }
+
+    const startFindData = () =>{
+        setIdApi(idApiBkp);
+        setNameApi(nameApi);
+        setIdNumberRegiser(idNumberRegiserBkp);
     }
 
     return (
@@ -45,10 +70,32 @@ export const SendData = () => {
                     >
                         {apisKMM.map( item => <Option key={ item.id } value={ item.id }>{ item.name }</Option>)}
                     </Select>
+                </Col>
+                <Col span={ 8 }>
+                    <Select defaultValue="5"
+                        showSearch
+                        style={{ width: 100 }}
+                        placeholder="Number of records"
+                        optionFilterProp="children"
+                        filterOption={(input, option) =>
+                        option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                        }
+                        onChange={(key, option) =>
+                            numberRegiterOnChangeSelect(key, option.children)
+                        }
+                    >
+                        {generateOptions(20)}
+                    </Select>
                 </Col>      
+                <Col span={ 8 }>
+                    <Button onClick={startFindData}>Find</Button>
+                </Col>      
+
+
+
             </Row>
 
-            <ReportRequestByApi title = {"Request Api"} idApi={idApi} nameApi={nameApi} />
+            <ReportRequestByApi title = {"Request Api"} idApi={idApi} nameApi={nameApi} idNumberRegiser={idNumberRegiser}/>
         </div>
     )
 }
