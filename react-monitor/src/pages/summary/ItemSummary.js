@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { getCountByTypeKMM } from '../../helpers/getDataKMM';
-import { Card, Spin } from 'antd';
+import { Card, Spin, Tag } from 'antd';
+
 
 
 const ItemSummary = ({ item }) => {
@@ -20,8 +21,12 @@ const ItemSummary = ({ item }) => {
     return (
         <>
  
-            <Card title={item}  extra={<a href={`/${item.toLowerCase()}`}>More</a>}>
-                 {total}
+            <Card title={item}  extra={<a href={`/${item.toLowerCase()}`}>More</a>}>                 
+
+                 <Tag color={item !== 'DriveTests' ? 'green' : 'geekblue'} key={item}>
+                    {total}
+                </Tag>
+
                  {
                     spinner && <Spin size="small" tip="Loading..." />
                  }

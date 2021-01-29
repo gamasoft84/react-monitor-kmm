@@ -1,12 +1,10 @@
 import { fetchSinToken } from "./fetch";
 
-
-const URL_BACK = process.env.REACT_APP_API_BACK;
-const URL_BACK_DASHBOARD = process.env.URL_BACK_DASHBOARD_MYSALES;
+const REACT_APP_BACK_DASHBOARD_MYSALES = process.env.REACT_APP_BACK_DASHBOARD_MYSALES;
 
 
 export const getInfoEventsKMM = async() => {
-    const resp = await fetch(URL_BACK + 'infoEvents');
+    const resp = await fetchSinToken('infoEvents');
     const data = await resp.json();
     if(data && data.length > 1){
         data.sort((a, b) => b.nameEvent > a.nameEvent);
@@ -15,7 +13,7 @@ export const getInfoEventsKMM = async() => {
 }
 
 export const getDataEventKMM = async(idEvent) => {
-    const resp = await fetch(URL_BACK +  `dataEvents/${idEvent}`);
+    const resp = await fetchSinToken(`dataEvents/${idEvent}`);
     const data = await resp.json();
     if(data && data.length > 1){
         //add property index requiered for table
@@ -27,7 +25,7 @@ export const getDataEventKMM = async(idEvent) => {
 
 
 export const getDataTestDriveEventsKMM = async(idEvent) => {
-    const resp = await fetch(URL_BACK + `dataTestsDriveEvents/${idEvent}`);
+    const resp = await fetchSinToken(`dataTestsDriveEvents/${idEvent}`);
     const data = await resp.json();
     return data;
 }
@@ -35,7 +33,7 @@ export const getDataTestDriveEventsKMM = async(idEvent) => {
 
 
 export const getDataKMM = async(type) => {
-    const resp = await fetch(`${URL_BACK_DASHBOARD}data${type}ByDay`);
+    const resp = await fetch(`${REACT_APP_BACK_DASHBOARD_MYSALES}/data${type}ByDay`);
     const data = await resp.json();
     if(data && data.length > 1){
         data.sort((a, b) => b.total - a.total);
@@ -45,44 +43,44 @@ export const getDataKMM = async(type) => {
 
 
 export const getInfoPriceKMM = async() => {
-    const resp = await fetch(URL_BACK + 'infoPrice');
+    const resp = await fetchSinToken('infoPrice');
     const data = await resp.json();
     return data;
 }
 
 export const getInfoPdvsKMM = async() => {
-    const resp = await fetch(URL_BACK + 'infoPdvs');
+    const resp = await fetchSinToken('infoPdvs');
     const data = await resp.json();
     return data;
 }
 
 export const getLeadsCrm = async(dateinit, dateEnd) => {
-    const resp = await fetch(`${URL_BACK}findLeads/${dateinit}/${dateEnd}`);
+    const resp = await fetchSinToken(`findLeads/${dateinit}/${dateEnd}`);
     const data = await resp.json();
     return data;
 }
 
 //summary section
 export const getCountByTypeKMM = async(type) => {
-    const resp = await fetch(`${URL_BACK_DASHBOARD}count${type}ByDay`);
+    const resp = await fetch(`${REACT_APP_BACK_DASHBOARD_MYSALES}/count${type}ByDay`);
     const total = await resp.json();
     return total;
 }
 
 export const getFindVehiclesOfInterest = async() => {
-    const resp = await fetch(`${URL_BACK}findVehiclesOfInterest`);
+    const resp = await fetchSinToken('findVehiclesOfInterest');
     const data = await resp.json();
     return data;
 }
 
 export const findLeadTypes = async() => {
-    const resp = await fetch(`${URL_BACK}findLeadTypes`);
+    const resp = await fetchSinToken('findLeadTypes');
     const data = await resp.json();
     return data;
 }
 
 export const findTimesFrame = async() => {
-    const resp = await fetch(`${URL_BACK}findTimesFrame`);
+    const resp = await fetchSinToken('findTimesFrame');
     const data = await resp.json();
     return data;
 }
