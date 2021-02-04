@@ -1,9 +1,9 @@
 const baseUrl = process.env.REACT_APP_API_GATEWAY_BACK;
 
 const fetchAGSinToken = ( endpoint, data, method = 'GET' ) => {
-
+    
     const url = `${ baseUrl }/${ endpoint }`;
-    console.log('URL',url,);
+    //console.log('URL',url);
     if ( method === 'GET' ) {
         return fetch( url );
     } else {

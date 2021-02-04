@@ -18,9 +18,7 @@ export const SendData = () => {
 
 
     useEffect(() => {
-        getDataApis().then((data) => {
-                setApisKMM(data)
-            });           
+            setApisKMM(getDataApis())
     }, [])  
 
     const apiOnChangeSelect = (idApi,nameApi) => {
@@ -72,7 +70,7 @@ export const SendData = () => {
                     </Select>
                 </Col>
                 <Col span={ 8 }>
-                    <Select defaultValue="5"
+                    <Select defaultValue={idNumberRegiserBkp}
                         showSearch
                         style={{ width: 100 }}
                         placeholder="Number of records"
@@ -84,7 +82,7 @@ export const SendData = () => {
                             numberRegiterOnChangeSelect(key, option.children)
                         }
                     >
-                        {generateOptions(20)}
+                        {generateOptions(200)}
                     </Select>
                 </Col>      
                 <Col span={ 8 }>

@@ -86,29 +86,29 @@ export const findTimesFrame = async() => {
 }
 
 
-export const getDataApis = async() => {
+export const getDataApis = () => {
     const data = [
-            {id: 2	,name: "SubmitPOVINdata"},
-            {id: 1	,name: "SubmitLeadData"},
-            {id: 3	,name: "SubmitInvoiceVINdata"},
-            {id: 4	,name: "SubmitVehicleDetailData"},
-            {id: 5	,name: "SubmitStaffData"},
-            {id: 6	,name: "SubmitCheckinLeadData"},
-            {id: 7	,name: "SubmitCustomerInformation"},
-            {id: 8	,name: "SubmitTestDriveFeedback"},
-            {id: 9	,name: "RetrieveVehicleStockCount"},
-            {id: 10	,name: "RequestPOVINdata"},
-            {id: 11	,name: "RetrievePurchaseHistory"},
-            {id: 15	,name: "SubmitVehicleInfo"},
-            {id: 16	,name: "SubmitFinancialApproval"},
-            {id: 17	,name: "SubmitBNPPDVInfo"},
-            {id: 18	,name: "SubmitBNPUsersInfo"},
-            {id: 19	,name: "SubmitPromotionalPlans"},
-            {id: 20	,name: "RetrievePaymentInfo"},
-            {id: 21	,name: "RequestFinancialQuotation"},
-            {id: 23	,name: "RequestAnnuityQuotation"},
-            {id: 24	,name: "SubmitClosedLeadData"},
-            {id: 25	,name: "SubmitLeadDataScoring"}
+            {id: 2	, path: "mysales/",  name: "SubmitPOVINdata"},
+            {id: 1	, path: "internal/", name: "SubmitLeadData"},
+            {id: 3	, path: "dms/",      name: "SubmitInvoiceVINdata"},
+            {id: 4	, path: "nodefine/", name: "SubmitVehicleDetailData"},
+            {id: 5	, path: "nodefine/", name: "SubmitStaffData"},
+            {id: 6	, path: "mysales/",  name: "SubmitCheckinLeadData"},
+            {id: 7	, path: "mysales/",  name: "SubmitCustomerInformation"},
+            {id: 8	, path: "nodefine/", name: "SubmitTestDriveFeedback"},
+            {id: 9	, path: "mysales/",  name: "RetrieveVehicleStockCount"},
+            {id: 10	, path: "dms/",      name: "RequestPOVINdata"},
+            {id: 11	, path: "nodefine/", name: "RetrievePurchaseHistory"},
+            {id: 15	, path: "nodefine/", name: "SubmitVehicleInfo"},
+            {id: 16	, path: "nodefine/", name: "SubmitFinancialApproval"},
+            {id: 17	, path: "nodefine/", name: "SubmitBNPPDVInfo"},
+            {id: 18	, path: "nodefine/", name: "SubmitBNPUsersInfo"},
+            {id: 19	, path: "nodefine/", name: "SubmitPromotionalPlans"},
+            {id: 20	, path: "nodefine/", name: "RetrievePaymentInfo"},
+            {id: 21	, path: "nodefine/", name: "RequestFinancialQuotation"},
+            {id: 23	, path: "nodefine/", name: "RequestAnnuityQuotation"},
+            {id: 24	, path: "nodefine/", name: "SubmitClosedLeadData"},
+            {id: 25	, path: "nodefine/", name: "SubmitLeadDataScoring"}
         ];
         
     return data;
@@ -118,6 +118,6 @@ export const getDataApis = async() => {
 
 export const findRequestByIdApi = async(idApi, top) => {
     const resp = await fetchSinToken('findRequestByIdApi',{idApi, top},'POST');
-    const data = await resp.json();
+    const data = await resp.json();  
     return data;
 }

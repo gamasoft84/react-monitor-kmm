@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { findRequestByIdApi } from '../../helpers/getDataKMM';
+import { findRequestByIdApi, getDataApis } from '../../helpers/getDataKMM';
 import { Col, Row, Typography, Divider, Table, Space, Button, Tag} from 'antd';
 import { fetchAGSinToken } from '../../helpers/fetchApiGateway';
 
@@ -13,6 +13,7 @@ export const ReportRequestByApi = ({idApi, nameApi, idNumberRegiser}) => {
     const [ filteredInfo, setFilteredInfo ] = useState([]);
     const [ sortedInfo, setSortedInfo ] = useState([]);
     const [ responseData  , setResponseData] = useState([])
+    const [procesados, setProcesados] = useState(0);
 
 
 const handleChange = (pagination, filters, sorter) => {
@@ -93,7 +94,7 @@ const columns = [
                 setSortedInfo(sortedInfo || {});
                 setFilteredInfo(filteredInfo || {});
                 if(data){
-                    setElements(data.reverse());
+                    setElements(data);
                 }                
             });
             setResponseData([]);
@@ -101,16 +102,19 @@ const columns = [
 
     
     const startSendData = async () =>{
+      setProcesados(0);
       const res = await sendData();
       setResponseData(res);
     }
 
-    const sendData = async () => {    
+    const sendData = async () => { 
+      let api = getDataApis().filter(d => d.id === idApi).shift();      
       const responses = []  
       await Promise.all(
         elements.map(async(element) => {
-          const resp = await fetchAGSinToken(nameApi,JSON.parse(element.RQ_XML),'POST');
+          const resp = await fetchAGSinToken(api?.path + nameApi, JSON.parse(element.RQ_XML),'POST');
           const data = await resp.json();
+          setProcesados( p=> p + 1);
           responses.push(data);
         })
       );           
@@ -130,9 +134,20 @@ const columns = [
                 <br></br>
                 <Divider />
 
+                {procesados > 0 && <p>Processed: {procesados}/{idNumberRegiser}</p>}
+                {procesados == idNumberRegiser && 
+                  <div>
+                    <Tag color='green'>GCORESU</Tag>: {responseData.filter(d => d.resultCode === 'GCORESU').length} &nbsp;&nbsp;&nbsp;
+                    <Tag color='volcano'>GCOREFA</Tag>: {responseData.filter(d => d.resultCode === 'GCOREFA').length} 
+                  </div>                  
+                }
+                <br></br>
+
                 {                    
                   <ul>
                     {responseData.map(d =>
+                    
+                    d.resultCode !== 'GCORESU'  &&
                     
                     <li key={d.messageId}>{d.messageId}
                       <ul>
@@ -155,7 +170,7 @@ const columns = [
                     </li>
                     
                     )}
-                  </ul> 
+                  </ul>                  
                 } 
                  <Row>
                     <Col  align="center">
