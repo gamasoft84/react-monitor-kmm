@@ -88,27 +88,27 @@ export const findTimesFrame = async() => {
 
 export const getDataApis = () => {
     const data = [
-            {id: 2	, path: "mysales/",  name: "SubmitPOVINdata"},
-            {id: 1	, path: "internal/", name: "SubmitLeadData"},
-            {id: 3	, path: "dms/",      name: "SubmitInvoiceVINdata"},
-            {id: 4	, path: "nodefine/", name: "SubmitVehicleDetailData"},
-            {id: 5	, path: "nodefine/", name: "SubmitStaffData"},
-            {id: 6	, path: "mysales/",  name: "SubmitCheckinLeadData"},
-            {id: 7	, path: "mysales/",  name: "SubmitCustomerInformation"},
-            {id: 8	, path: "nodefine/", name: "SubmitTestDriveFeedback"},
-            {id: 9	, path: "mysales/",  name: "RetrieveVehicleStockCount"},
-            {id: 10	, path: "dms/",      name: "RequestPOVINdata"},
-            {id: 11	, path: "nodefine/", name: "RetrievePurchaseHistory"},
-            {id: 15	, path: "nodefine/", name: "SubmitVehicleInfo"},
-            {id: 16	, path: "nodefine/", name: "SubmitFinancialApproval"},
-            {id: 17	, path: "nodefine/", name: "SubmitBNPPDVInfo"},
-            {id: 18	, path: "nodefine/", name: "SubmitBNPUsersInfo"},
-            {id: 19	, path: "nodefine/", name: "SubmitPromotionalPlans"},
-            {id: 20	, path: "nodefine/", name: "RetrievePaymentInfo"},
-            {id: 21	, path: "nodefine/", name: "RequestFinancialQuotation"},
-            {id: 23	, path: "nodefine/", name: "RequestAnnuityQuotation"},
-            {id: 24	, path: "nodefine/", name: "SubmitClosedLeadData"},
-            {id: 25	, path: "nodefine/", name: "SubmitLeadDataScoring"}
+            {id: 1	, path: "rest/internal/", name: "SubmitLeadData",             token: "" },
+            {id: 2	, path: "rest/mysales/",  name: "SubmitPOVINdata",            token: "userMySales" },
+            {id: 3	, path: "rest/dms/",      name: "SubmitInvoiceVINdata",       token: "userDms" },
+            {id: 4	, path: "rest/nodefine/", name: "SubmitVehicleDetailData",    token: "" },
+            {id: 5	, path: "rest/nodefine/", name: "SubmitStaffData",            token: "" },
+            {id: 6	, path: "rest/mysales/",  name: "SubmitCheckinLeadData",      token: "userMySales" },
+            {id: 7	, path: "rest/mysales/",  name: "SubmitCustomerInformation",  token: "userMySales" },
+            {id: 8	, path: "rest/nodefine/", name: "SubmitTestDriveFeedback",    token: "" },
+            {id: 9	, path: "rest/mysales/",  name: "RetrieveVehicleStockCount",  token: "userMySales" },
+            {id: 10	, path: "rest/dms/",      name: "RequestPOVINdata",           token: "userDms" },
+            {id: 11	, path: "rest/nodefine/", name: "RetrievePurchaseHistory",    token: "" },
+            {id: 15	, path: "rest/nodefine/", name: "SubmitVehicleInfo",          token: "" },
+            {id: 16	, path: "rest/nodefine/", name: "SubmitFinancialApproval",    token: "" },
+            {id: 17	, path: "rest/nodefine/", name: "SubmitBNPPDVInfo",           token: "" },
+            {id: 18	, path: "rest/nodefine/", name: "SubmitBNPUsersInfo",         token: "" },
+            {id: 19	, path: "rest/nodefine/", name: "SubmitPromotionalPlans",     token: "" },
+            {id: 20	, path: "rest/nodefine/", name: "RetrievePaymentInfo",        token: "" },
+            {id: 21	, path: "rest/nodefine/", name: "RequestFinancialQuotation",  token: "" },
+            {id: 23	, path: "rest/nodefine/", name: "RequestAnnuityQuotation",    token: "" },
+            {id: 24	, path: "rest/nodefine/", name: "SubmitClosedLeadData",       token: "" },
+            {id: 25	, path: "rest/nodefine/", name: "SubmitLeadDataScoring",      token: "" }
         ];
         
     return data;

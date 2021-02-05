@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { findRequestByIdApi, getDataApis } from '../../helpers/getDataKMM';
 import { Col, Row, Typography, Divider, Table, Space, Button, Tag} from 'antd';
-import { fetchAGSinToken } from '../../helpers/fetchApiGateway';
+import { fetchAGConToken } from '../../helpers/fetchApiGateway';
+import { setToken } from '../../helpers/token';
 
 
 const { Title  } = Typography;
@@ -103,7 +104,8 @@ const columns = [
     
     const startSendData = async () =>{
       setProcesados(0);
-      const res = await sendData();
+      await setToken(idApi);
+      const res = await sendData();      
       setResponseData(res);
     }
 
@@ -112,7 +114,7 @@ const columns = [
       const responses = []  
       await Promise.all(
         elements.map(async(element) => {
-          const resp = await fetchAGSinToken(api?.path + nameApi, JSON.parse(element.RQ_XML),'POST');
+          const resp = await fetchAGConToken(api?.path + nameApi, JSON.parse(element.RQ_XML),'POST');
           const data = await resp.json();
           setProcesados( p=> p + 1);
           responses.push(data);
@@ -134,8 +136,8 @@ const columns = [
                 <br></br>
                 <Divider />
 
-                {procesados > 0 && <p>Processed: {procesados}/{idNumberRegiser}</p>}
-                {procesados == idNumberRegiser && 
+                {procesados > 0 && <p>Processed: {procesados}/{elements.length}</p>}
+                {procesados > 0 && procesados == elements.length && 
                   <div>
                     <Tag color='green'>GCORESU</Tag>: {responseData.filter(d => d.resultCode === 'GCORESU').length} &nbsp;&nbsp;&nbsp;
                     <Tag color='volcano'>GCOREFA</Tag>: {responseData.filter(d => d.resultCode === 'GCOREFA').length} 

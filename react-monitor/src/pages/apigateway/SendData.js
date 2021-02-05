@@ -11,9 +11,9 @@ export const SendData = () => {
 
     const [ apisKMM, setApisKMM] = useState([]);
     const [ idApi, setIdApi] = useState();
-    const [ nameApi, setNameApi] = useState('');
+    const [ nameApi, setNameApi] = useState('SubmitLeadData');
     const [ idNumberRegiser, setIdNumberRegiser] = useState();
-    const [ idApiBkp, setIdApiBkp] = useState();
+    const [ idApiBkp, setIdApiBkp] = useState(1);
     const [ idNumberRegiserBkp, setIdNumberRegiserBkp] = useState(5);
 
 
@@ -22,6 +22,8 @@ export const SendData = () => {
     }, [])  
 
     const apiOnChangeSelect = (idApi,nameApi) => {
+        nameApi = nameApi.join(' ');
+        nameApi = nameApi.substring(nameApi.indexOf('-') + 3,nameApi.length);
         setIdApiBkp(idApi);
         setNameApi(nameApi);
     }
@@ -54,7 +56,7 @@ export const SendData = () => {
             <Divider />
             <Row>
                 <Col span={ 8 }>
-                    <Select
+                    <Select defaultValue='1 - SubmitLeadData'
                         showSearch
                         style={{ width: 300 }}
                         placeholder="Search to Select Api"
@@ -66,7 +68,7 @@ export const SendData = () => {
                             apiOnChangeSelect(key, option.children)
                         }
                     >
-                        {apisKMM.map( item => <Option key={ item.id } value={ item.id }>{ item.name }</Option>)}
+                        {apisKMM.map( item => <Option key={ item.id } value={ item.id }>{item.id} - { item.name }</Option>)}
                     </Select>
                 </Col>
                 <Col span={ 8 }>

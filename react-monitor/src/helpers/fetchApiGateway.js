@@ -3,7 +3,7 @@ const baseUrl = process.env.REACT_APP_API_GATEWAY_BACK;
 const fetchAGSinToken = ( endpoint, data, method = 'GET' ) => {
     
     const url = `${ baseUrl }/${ endpoint }`;
-    //console.log('URL',url);
+    console.log('URL',url);
     if ( method === 'GET' ) {
         return fetch( url );
     } else {
@@ -20,13 +20,12 @@ const fetchAGSinToken = ( endpoint, data, method = 'GET' ) => {
 const fetchAGConToken = ( endpoint, data, method = 'GET' ) => {
 
     const url = `${ baseUrl }/${ endpoint }`;
-    const token = localStorage.getItem('token') || '';
-
+    const token = localStorage.getItem('Token') || '';
     if ( method === 'GET' ) {
         return fetch( url, {
             method,
             headers: {
-                'x-token': token
+                'Token': token
             }
         });
     } else {
@@ -34,7 +33,7 @@ const fetchAGConToken = ( endpoint, data, method = 'GET' ) => {
             method,
             headers: {
                 'Content-type': 'application/json',
-                'x-token': token
+                'Token': token
             },
             body: JSON.stringify( data )
         });
