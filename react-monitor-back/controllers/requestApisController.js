@@ -26,7 +26,7 @@ const findRequestByIdApi = (req = request, res  = response) => {
               `          
                 SELECT TOP ${top} MSG_ID,RQ_SEND_DDHHMI,TRSC_RSLT_CD, RQ_XML,RSP_XML
                 FROM GLB_INF_LOG_HIS_G_I A 
-                WHERE A.CRE_DTM >= DATEADD(day,-10,getDate()) AND A.API_SVC_ID = ${idApi}
+                WHERE A.CRE_DTM >= DATEADD(day,-365,getDate()) AND A.API_SVC_ID = ${idApi}
                 order by A.CRE_DTM desc
               `, function (err, recordset) {                    
                 if (err) console.log(err)

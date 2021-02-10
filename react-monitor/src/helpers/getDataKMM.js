@@ -85,11 +85,17 @@ export const findTimesFrame = async() => {
     return data;
 }
 
+export const getCountTotalErrorsByTypeKMM = async(type) => {
+    const resp = await fetch(`${REACT_APP_BACK_DASHBOARD_MYSALES}/countTotalErrorsByType`);
+    const total = await resp.json();
+    return total;
+}
+
 
 export const getDataApis = () => {
     const data = [
             {id: 1	, path: "rest/internal/", name: "SubmitLeadData",             token: "" },
-            {id: 2	, path: "rest/mysales/",  name: "SubmitPOVINdata",            token: "userMySales" },
+            {id: 2	, path: "rest/dms/",      name: "SubmitPOVINdata",            token: "userDms" },
             {id: 3	, path: "rest/dms/",      name: "SubmitInvoiceVINdata",       token: "userDms" },
             {id: 4	, path: "rest/nodefine/", name: "SubmitVehicleDetailData",    token: "" },
             {id: 5	, path: "rest/nodefine/", name: "SubmitStaffData",            token: "" },
@@ -97,7 +103,7 @@ export const getDataApis = () => {
             {id: 7	, path: "rest/mysales/",  name: "SubmitCustomerInformation",  token: "userMySales" },
             {id: 8	, path: "rest/nodefine/", name: "SubmitTestDriveFeedback",    token: "" },
             {id: 9	, path: "rest/mysales/",  name: "RetrieveVehicleStockCount",  token: "userMySales" },
-            {id: 10	, path: "rest/dms/",      name: "RequestPOVINdata",           token: "userDms" },
+            {id: 10	, path: "rest/mysales/",  name: "RequestPOVINdata",           token: "userMySales" },
             {id: 11	, path: "rest/nodefine/", name: "RetrievePurchaseHistory",    token: "" },
             {id: 15	, path: "rest/nodefine/", name: "SubmitVehicleInfo",          token: "" },
             {id: 16	, path: "rest/nodefine/", name: "SubmitFinancialApproval",    token: "" },

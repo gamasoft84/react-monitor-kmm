@@ -29,6 +29,7 @@ import VehicleOfInterest from '../leadscrm/VehicleOfInterest';
 import TimeFramePurcharse from '../leadscrm/TimeFramePurcharse';
 import LeadType from '../leadscrm/LeadType';
 import { SendData } from '../apigateway/SendData';
+import { ReportErrorsByDay } from '../reports/ReportErrorsByDay';
 
 const { SubMenu } = Menu;
 const { Header, Footer, Sider, Content } = Layout;
@@ -63,6 +64,7 @@ export const RouterPageKMM = () => {
                         >
                           <SubMenu key="sub1" icon={<BarChartOutlined />} title="Graphs">
                             <Menu.Item key="0"><Link to="/summaryByDay">Summary By Day</Link></Menu.Item>
+                            <Menu.Item key="14"><Link to="/errorsByDay">Errors By Day</Link></Menu.Item>
                             <Menu.Item key="1"><Link to="/leads">Leads</Link></Menu.Item>
                             <Menu.Item key="2"><Link to="/quotations">Quotations</Link></Menu.Item>
                             <Menu.Item key="3"><Link to="/drivetests">Test Drive</Link></Menu.Item>                          
@@ -106,6 +108,7 @@ export const RouterPageKMM = () => {
                           <Route path="/timeFrame" component={ TimeFramePurcharse } />
                           <Route path="/leadsType" component={ LeadType } />
                           <Route path="/apigategay/sendata" component={ SendData } />
+                          <Route path="/errorsByDay" component={ ReportErrorsByDay} />
                           <Redirect to="/leads" />
                         </Switch>
                       </Content>

@@ -103,6 +103,7 @@ const columns = [
 
     
     const startSendData = async () =>{
+      setResponseData([]);
       setProcesados(0);
       await setToken(idApi);
       const res = await sendData();      
