@@ -3,10 +3,10 @@
 
 .logo {
   float: left;
-  width: 120px;
-  height: 51px;
+  width: 200px;
+  height: 50px;
   margin: 6px 0px 0px 0px;
-  background-image: url("https://www.kia.com/content/dam/kwcms/mx/es/images/common/lg_kia.png");
+  background-image: url("/Kia_Logo_B_200.png");
   background-repeat: no-repeat;
 }
 
@@ -31,3 +31,11 @@
   .ant-divider-with-text{
     background-color:transparent;
   }
+
+  .ant-layout-header {
+    height: 64px;
+    padding: 0 50px;
+    color: #f8f9fa;
+    line-height: 64px;
+    background: #f8f9fa;
+}

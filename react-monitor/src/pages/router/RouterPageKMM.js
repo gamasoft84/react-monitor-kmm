@@ -42,10 +42,10 @@ export const RouterPageKMM = () => {
                <Layout>
                   <Header className="header">
                     <div className="logo" />
-                    <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
+                    <Menu theme="light" mode="horizontal" defaultSelectedKeys={['2']}>
                       <Menu.Item key="1"><Link to="/leads">Leads</Link></Menu.Item>
-                      <Menu.Item key="2"><Link to="/events">Events</Link></Menu.Item>
                       <Menu.Item key="3"><Link to="/prices">Prices</Link></Menu.Item>
+                      <Menu.Item key="2"><Link to="/errorsByDay">Errors</Link></Menu.Item>
                     </Menu>
                   </Header>
                   <Content style={{ padding: '0 50px' }}>
