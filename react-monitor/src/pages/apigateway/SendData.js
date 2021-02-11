@@ -62,7 +62,7 @@ export const SendData = () => {
                         placeholder="Search to Select Api"
                         optionFilterProp="children"
                         filterOption={(input, option) =>
-                        option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                        option.children.toString().toLowerCase().indexOf(input.toLowerCase()) >= 0
                         }
                         onChange={(key, option) =>
                             apiOnChangeSelect(key, option.children)
@@ -78,7 +78,7 @@ export const SendData = () => {
                         placeholder="Number of records"
                         optionFilterProp="children"
                         filterOption={(input, option) =>
-                        option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                            option.children.toString().indexOf(input) >= 0
                         }
                         onChange={(key, option) =>
                             numberRegiterOnChangeSelect(key, option.children)

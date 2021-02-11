@@ -4,8 +4,8 @@
 .logo {
   float: left;
   width: 200px;
-  height: 50px;
-  margin: 6px 0px 0px 0px;
+  height: 70px;
+  margin: 6px 0px 0px 10px;
   background-image: url("/Kia_Logo_B_200.png");
   background-repeat: no-repeat;
 }
@@ -35,7 +35,7 @@
   .ant-layout-header {
     height: 64px;
     padding: 0 50px;
-    color: #f8f9fa;
+    color: #F0F2F5;
     line-height: 64px;
-    background: #f8f9fa;
-}
+    background: #F0F2F5;
+  }
