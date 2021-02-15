@@ -15,6 +15,7 @@ export const SendData = () => {
     const [ idNumberRegiser, setIdNumberRegiser] = useState();
     const [ idApiBkp, setIdApiBkp] = useState(1);
     const [ idNumberRegiserBkp, setIdNumberRegiserBkp] = useState(5);
+    const [isLoading, setIsLoading] = useState(false)
 
 
     useEffect(() => {
@@ -35,7 +36,7 @@ export const SendData = () => {
     const generateOptions = (total) =>{
             const numbers = [];
             for (let index = 1; index <= total; index++) {
-                numbers.push(index * 5);               
+                numbers.push(index * 1);               
             }        
             return numbers.map((e, index) => {
             return (
@@ -89,13 +90,11 @@ export const SendData = () => {
                 </Col>      
                 <Col span={ 8 }>
                     <Button onClick={startFindData}>Find</Button>
-                </Col>      
-
-
-
+                </Col>
             </Row>
-
-            <ReportRequestByApi title = {"Request Api"} idApi={idApi} nameApi={nameApi} idNumberRegiser={idNumberRegiser}/>
+            
+          
+            <ReportRequestByApi title = {"Request Api"} idApi={idApi} nameApi={nameApi} idNumberRegiser={idNumberRegiser} setIsLoading={setIsLoading} isLoading={isLoading}/>
         </div>
     )
 }

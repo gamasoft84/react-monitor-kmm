@@ -1,21 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { findRequestByIdApi, getDataApis } from '../../helpers/getDataKMM';
-import { Col, Row, Typography, Divider, Table, Space, Button, Tag} from 'antd';
+import { Col, Row, Typography, Divider, Table, Space, Spin, Button, Tag} from 'antd';
 import { fetchAGConToken } from '../../helpers/fetchApiGateway';
+import { filterPayload } from '../../helpers/filterPayloadApi';
 import { setToken } from '../../helpers/token';
 
 
 const { Title  } = Typography;
   
 
-export const ReportRequestByApi = ({idApi, nameApi, idNumberRegiser}) => {
+export const ReportRequestByApi = ({idApi, nameApi, idNumberRegiser,setIsLoading, isLoading}) => {
 
     const [ elements, setElements ] = useState([]);
     const [ filteredInfo, setFilteredInfo ] = useState([]);
     const [ sortedInfo, setSortedInfo ] = useState([]);
     const [ responseData  , setResponseData] = useState([])
-    const [procesados, setProcesados] = useState(0);
-
+    const [ procesados, setProcesados] = useState(0);
+    const [isSendingData, setIsSendingData] = useState(false)
 
 const handleChange = (pagination, filters, sorter) => {
     setSortedInfo(sorter);
@@ -91,23 +92,28 @@ const columns = [
  
 
     useEffect(() => {       
+      setIsLoading(true);
             findRequestByIdApi(idApi, idNumberRegiser).then((data) => {                  
                 setSortedInfo(sortedInfo || {});
                 setFilteredInfo(filteredInfo || {});
                 if(data){
                     setElements(data);
                 }                
+                setIsLoading(false);
             });
             setResponseData([]);
+
     }, [filteredInfo,sortedInfo,idApi,idNumberRegiser])    
 
     
     const startSendData = async () =>{
+      setIsSendingData(true);
       setResponseData([]);
       setProcesados(0);
       await setToken(idApi);
       const res = await sendData();      
       setResponseData(res);
+      setIsSendingData(false);
     }
 
     const sendData = async () => { 
@@ -115,7 +121,8 @@ const columns = [
       const responses = []  
       await Promise.all(
         elements.map(async(element) => {
-          const resp = await fetchAGConToken(api?.path + nameApi, JSON.parse(element.RQ_XML),'POST');
+          let payload = filterPayload(JSON.parse(element.RQ_XML),api);
+          const resp = await fetchAGConToken(api?.path + nameApi, payload,'POST');
           const data = await resp.json();
           setProcesados( p=> p + 1);
           responses.push(data);
@@ -124,13 +131,22 @@ const columns = [
       return responses;
     };
 
-
-
     return (        
     <>
+        {isLoading  &&
+          
 
+          <Row style={{ marginTop: 30 }}>
+              <Col span={ 24 } offset={ 0 } align="center">
+              <Space size="middle" align="center" id="idSpinner">
+                <Spin size="large" tip="Loading..." />
+            </Space>                 
+              </Col>
+          </Row>
+        }       
+        
         {
-            elements &&(
+            elements && !isLoading && (
                 <>
                 <br></br>
                 <Title level={ 2 }>{nameApi}</Title>
@@ -178,7 +194,11 @@ const columns = [
                  <Row>
                     <Col  align="center">
                             <Space style={{ marginBottom: 16 }}>
-                                <Button onClick={startSendData}>Send Data</Button>
+                                {isSendingData && <Space size="middle" align="center" id="idSpinner">
+                                      <Spin size="large" tip="Loading..." />
+                                  </Space> 
+                                }
+                                 {!isSendingData && <Button onClick={startSendData}>Send Data</Button>}
                                 <Button onClick={clearFilters}>Clear filters</Button>
                                 <Button onClick={clearAll}>Clear filters and sorters</Button>
                             </Space>

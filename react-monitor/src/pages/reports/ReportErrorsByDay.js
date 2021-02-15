@@ -3,7 +3,7 @@ import { getCountTotalErrorsByTypeKMM } from '../../helpers/getDataKMM';
 import { ReloadOutlined } from '@ant-design/icons';
 import { Col, Row, Typography, Divider, Table, Space, Button, Tag } from 'antd';
 
-const { Title, Text } = Typography;
+const { Title } = Typography;
 
 
 export const ReportErrorsByDay = () => {
@@ -80,7 +80,6 @@ export const ReportErrorsByDay = () => {
 
   const updateData = () => {
     getCountTotalErrorsByTypeKMM().then((data) => {
-      console.log(data);
       setSortedInfo(sortedInfo || {});
       setFilteredInfo(filteredInfo || {});
       setElements(data);
