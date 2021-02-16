@@ -103,7 +103,7 @@ const columns = [
             });
             setResponseData([]);
 
-    }, [filteredInfo,sortedInfo,idApi,idNumberRegiser])    
+    }, [idApi,idNumberRegiser])    
 
     
     const startSendData = async () =>{
