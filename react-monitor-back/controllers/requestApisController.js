@@ -30,7 +30,7 @@ const findRequestByIdApi = (req = request, res  = response) => {
                 order by A.CRE_DTM desc
               `, function (err, recordset) {                    
                 if (err) console.log(err)
-                console.log(recordset.rowsAffected);        
+                //console.log(recordset.rowsAffected);        
                 // send records as a response
                 res.send(recordset.recordset);                    
             });

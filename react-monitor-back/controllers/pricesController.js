@@ -25,7 +25,7 @@ const findPrices = (req, res  = response) => {
           WHERE A.API_SVC_ID = 15 AND A.CRE_DTM >= DATEADD(day,-1,getDate())
           `, function (err, recordset) {                    
             if (err) console.log(err)
-            console.log(recordset.rowsAffected);        
+            //console.log(recordset.rowsAffected);        
             // send records as a response
             res.send(recordset.recordset);                    
         });

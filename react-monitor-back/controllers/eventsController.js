@@ -32,7 +32,7 @@ const findEventById = (req, res  = response) =>{
           ORDER BY 'total' DESC`, function (err, recordset) {
             
             if (err) console.log(err)
-            console.log(recordset.rowsAffected);        
+            //console.log(recordset.rowsAffected);        -
             // send records as a response
             res.send(recordset.recordset);                    
         });
@@ -67,7 +67,7 @@ const findDataTestDriveByIdEvent = (req, res = response) => {
             GROUP BY  D.DLR_NM                  
             ORDER BY 'total' DESC`, function (err, recordset) {                    
             if (err) console.log(err)
-            console.log(recordset.rowsAffected);        
+            //console.log(recordset.rowsAffected);        
             // send records as a response
             res.send(recordset.recordset);                    
         });
@@ -87,7 +87,7 @@ const findEvents = (req, res = respnse) => {
           FROM GLB_ETC_AD_SRC_C WHERE SRC_ID > 8 AND SRC_ID NOT IN (11,12,16)order by SRC_ID desc
           `, function (err, recordset) {                    
             if (err) console.log(err)
-            console.log(recordset.rowsAffected);        
+            //console.log(recordset.rowsAffected);        
             // send records as a response
             res.send(recordset.recordset);                    
         });
