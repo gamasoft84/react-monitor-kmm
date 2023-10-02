@@ -1,10 +1,25 @@
 
     export const filterPayload = (payload, api) =>{
-
-        switch (api.id) {
-          case 6://SubmitCheckinLeadData
-            if(payload.contents){
-              console.log('fiterGender');
+      
+      switch (api.id) {
+        case 3://SubmitInvoiceVINdata
+          console.log('fiterTitle');
+          if(payload.customerType === "GCUCUIN"){
+            payload.companyInfo = null;
+            if(payload.customerInfo != null){
+              payload.customerInfo.title = fiterTitle( payload.customerInfo.title );
+            }
+          }else{
+            payload.customerInfo = null;
+            if(payload.companyInfo != null){
+              payload.companyInfo.companyID = validateProperty( payload.companyInfo.companyID, 'GAM9001014I5');
+            }
+          }
+          payload.scName = validateProperty( payload.scName, 'Ricardo Alejandro Estrada Gonzales' );
+        break;    
+        case 6://SubmitCheckinLeadData
+        if(payload.contents){
+          console.log('fiterGender');
               payload.contents.forEach(element => {
                 if(element.customerType === "GCUCUIN"){
                   element.companyInfo = null;
@@ -40,6 +55,7 @@
               if(payload.customerInfo != null){
                 payload.customerInfo.title = fiterTitle( payload.customerInfo.title );
                 payload.customerInfo.gender = fiterGender( payload.customerInfo.gender );
+                payload.customerInfo.address = validateProperty( payload.customerInfo.address , 'Av. Juarez 520');                
                 payload.customerInfo.surburb = validateProperty( payload.customerInfo.surburb , 'Surburb');                
               }
             }else{
@@ -65,6 +81,9 @@
             break;    
           case 'Mr':
             title = 'Ms.';
+            break;
+          case 'Other':
+            title = 'Others';
             break;    
           default:
               break;
